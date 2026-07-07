@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【2026馬光家庭日】純愛天后「郭靜」海岸音樂會：同仁專屬點歌許願池</title>
+    <style>
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #319795;
+            --background-color: #f0f8ff;
+            --card-background: #ffffff;
+            --text-color: #2d3748;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(180deg, var(--background-color) 0%, #e2e8f0 100%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: var(--card-background);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+
+        .header p {
+            color: #718096;
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .song-list {
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f7fafc;
+        }
+
+        .song-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #edf2f7;
+            transition: background-color 0.2s;
+        }
+
+        .song-item:last-child {
+            border-bottom: none;
+        }
+
+        .song-item:hover {
+            background-color: #edf2f7;
+        }
+
+        .song-info {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .song-info input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .song-details .title {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .song-details .desc {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .btn-play {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-play:hover {
+            background-color: #234e52;
+        }
+
+        .btn-play.playing {
+            background-color: #e53e3e;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #2b6cb0;
+        }
+
+        /* 隱藏 YouTube 播放器區塊 */
+        #player-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>【2026馬光家庭日】純愛天后「郭靜」</h1>
+        <p>海岸音樂會：同仁專屬點歌許願池！<br>期待在海風與歌聲陪伴下，一同度過美好時光。請選出您最想聽的神曲！</p>
+    </div>
+
+    <form id="voteForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+            <label for="nickname">同仁暱稱</label>
+            <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
+        </div>
+
+        <div class="form-group">
+            <label>專屬點歌神曲（可先點擊 ▶ 試聽經典副歌）</label>
+            <div class="song-list">
+                <!-- 歌曲 1 -->
+                <div class="song-item">
+                    <label class="song-info">
+                        <input type="radio" name="selectedSong" value="下一個天亮" required>
+                        <div class="song-details">
+                            <span class="title">下一個天亮</span>
+                            <span class="desc">國民級療癒神曲，大合唱必備！</span>
+                        </div>
+                    </label>
+                    <button type="button" class="btn-play" onclick="togglePlay('AEUmLttrY5s', 58, this)">▶ 試聽</button>
+                </div>
+                <!-- 歌曲 2 -->
+                <div class="song-item">
+                    <label class="song-info">
+                        <input type="radio" name="selectedSong" value="心牆">
+                        <div class="song-details">
+                            <span class="title">心牆</span>
+                            <span class="desc">經典偶像劇片尾曲，KTV 必點！</span>
+                        </div>
+                    </label>
+                    <button type="button" class="btn-play" onclick="togglePlay('VhCRokYVF1I', 66, this)">▶ 試聽</button>
+                </div>
+                <!-- 歌曲 3 -->
+                <div class="song-item">
+                    <label class="song-info">
+                        <input type="radio" name="selectedSong" value="我不想忘記你">
+                        <div class="song-details">
+                            <span class="title">我不想忘記你</span>
+                            <span class="desc">純愛風格的起點，最溫柔的郭式情歌。</span>
+                        </div>
+                    </label>
+                    <button type="button" class="btn-play" onclick="togglePlay('K-xda8e2FLc', 70, this)">▶ 試聽</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="message">許願池留言 / 想對郭靜說的話</label>
+            <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">送出點歌許願</button>
+    </form>
+</div>
+
+<!-- 存放 YouTube API 載入的隱藏容器 -->
+<div id="player-container">
+    <div id="yt-player"></div>
+</div>
+
+<script>
+    // 載入 YouTube Iframe Player API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    var currentButton = null;
+    var stopTimeout;
+    const PLAY_DURATION = 30000; // 試聽時間：30秒 (30000毫秒)
+
+    // API 載入完成後的初始化
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('yt-player', {
+            height: '0',
+            width: '0',
+            videoId: '',
+            playerVars: {
+                'playsinline': 1,
+                'controls': 0,
+                'disablekb': 1
+            },
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    // 控制音樂播放與暫停
+    function togglePlay(videoId, startTime, button) {
+        if (!player || typeof player.cueVideoById !== 'function') {
+            alert('音樂播放器準備中，請稍候再試！');
+            return;
+        }
+
+        // 如果點擊的是正在播放的歌曲，則暫停
+        if (currentButton === button && player.getPlayerState() === YT.PlayerState.PLAYING) {
+            player.pauseVideo();
+            resetButton(button);
+            return;
+        }
+
+        // 清除先前的定時器與按鈕狀態
+        if (currentButton) {
+            resetButton(currentButton);
+        }
+        clearTimeout(stopTimeout);
+
+        // 更新當前操作的按鈕
+        currentButton = button;
+        button.innerText = "■ 停止";
+        button.classList.add('playing');
+
+        // 載入並播放指定影片及起始秒數
+        player.loadVideoById({
+            videoId: videoId,
+            startSeconds: startTime
+        });
+
+        // 設定 30 秒後自動停止
+        stopTimeout = setTimeout(function() {
+            if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+                resetButton(button);
+            }
+        }, PLAY_DURATION);
+    }
+
+    function resetButton(button) {
+        button.innerText = "▶ 試聽";
+        button.classList.remove('playing');
+    }
+
+    function onPlayerStateChange(event) {
+        // 如果影片播完了或被手動關閉，重設按鈕狀態
+        if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
+            if (currentButton && event.data === YT.PlayerState.ENDED) {
+                resetButton(currentButton);
+                clearTimeout(stopTimeout);
+            }
+        }
+    }
+
+    // 表單送出邏輯
+    function submitForm(event) {
+        event.preventDefault();
+        
+        // 停止目前正在播放的音樂
+        if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
+            player.pauseVideo();
+            if (currentButton) resetButton(currentButton);
+        }
+
+        const nickname = document.getElementById('nickname').value;
+        const selectedSong = document.querySelector('input[name="selectedSong"]:checked').value;
+        const message = document.getElementById('message').value;
+
+        // 顯示成功提示（後續可在此處串接 GAS API 寫入 Google 試算表）
+        alert(`點歌成功！\n\n同仁暱稱：${nickname}\n點選歌曲：${selectedSong}\n留言內容：${message}`);
+        
+        // 重設表單
+        document.getElementById('voteForm').reset();
+    }
+</script>
+
+</body>
+</html>
