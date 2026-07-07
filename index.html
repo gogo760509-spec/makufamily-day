@@ -168,8 +168,15 @@
             background-color: #2b6cb0;
         }
 
+        /* 讓播放器保持極小的大小以利啟動，但隱藏起來不干擾視覺 */
         #player-container {
-            display: none;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0.01;
+            bottom: 0;
+            left: 0;
         }
     </style>
 </head>
@@ -257,6 +264,7 @@
 </div>
 
 <script>
+    // 異步引入 YouTube Player API
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -265,92 +273,32 @@
     var player;
     var currentButton = null;
     var stopTimeout;
-    const PLAY_DURATION = 30000;
+    const PLAY_DURATION = 30000; // 30 秒
 
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('yt-player', {
-            height: '0',
-            width: '0',
+            height: '200',
+            width: '320',
             videoId: '',
             playerVars: {
+                'autoplay': 0,
                 'playsinline': 1,
                 'controls': 0,
-                'disablekb': 1
+                'rel': 0
             },
             events: {
-                'onStateChange': onPlayerStateChange
+                'onStateChange': onPlayerStateChange,
+                'onReady': onPlayerReady
             }
         });
+    }
+
+    function onPlayerReady(event) {
+        // 初始化音量為 80 確保有聲音
+        player.setVolume(80);
     }
 
     function togglePlay(videoId, startTime, button) {
-        if (!player || typeof player.cueVideoById !== 'function') {
-            alert('音樂播放器準備中，請稍候再試！');
-            return;
-        }
-
-        if (currentButton === button && player.getPlayerState() === YT.PlayerState.PLAYING) {
-            player.pauseVideo();
-            resetButton(button);
-            return;
-        }
-
-        if (currentButton) {
-            resetButton(currentButton);
-        }
-        clearTimeout(stopTimeout);
-
-        currentButton = button;
-        button.innerText = "■ 停止";
-        button.classList.add('playing');
-
-        player.loadVideoById({
-            videoId: videoId,
-            startSeconds: startTime
-        });
-
-        stopTimeout = setTimeout(function() {
-            if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
-                player.pauseVideo();
-                resetButton(button);
-            }
-        }, PLAY_DURATION);
-    }
-
-    function resetButton(button) {
-        button.innerText = "▶ 試聽";
-        button.classList.remove('playing');
-    }
-
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
-            if (currentButton && event.data === YT.PlayerState.ENDED) {
-                resetButton(currentButton);
-                clearTimeout(stopTimeout);
-            }
-        }
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-        
-        if (player && player.getPlayerState() === YT.PlayerState.PLAYING) {
-            player.pauseVideo();
-            if (currentButton) resetButton(currentButton);
-        }
-
-        const nickname = document.getElementById('nickname').value;
-        const selectedSong = document.querySelector('input[name="selectedSong"]:checked').value;
-        const message = document.getElementById('message').value;
-        const submitBtn = document.querySelector('.btn-submit');
-
-        submitBtn.disabled = true;
-        submitBtn.innerText = "正在傳送許願池...";
-
-        const payload = {
-            nickname: nickname,
-            selectedSong: selectedSong,
-            message: message
-        };
-
-        const gasWebUrl = "
+        if (!player || typeof player.loadVideoById !== 'function') {
+            alert('音樂盒初始化中，請再點擊一次！');
+            return
