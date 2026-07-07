@@ -311,7 +311,6 @@
         }
     }
 
-    // 更新後的表單送出邏輯，負責與 GAS 連動
     function submitForm(event) {
         event.preventDefault();
         
@@ -334,8 +333,8 @@
             message: message
         };
 
-        // 【請在此處替換為您實際部署得到的 GAS 網頁應用程式網址】
-        const gasWebUrl = "https://script.google.com/macros/s/XXXXX/exec";
+        // 您的專屬 GAS 後端實體 API 網址
+        const gasWebUrl = "https://script.google.com/macros/s/AKfycby7daf7q2WE1SMvKC0Dv3TYkiDpRt87sxXyz6v6PC7qPlDZCdHH8me6mCQ2snsX-1wXKg/exec";
 
         fetch(gasWebUrl, {
             method: "POST",
