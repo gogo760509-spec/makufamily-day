@@ -168,7 +168,7 @@
             background-color: #2b6cb0;
         }
 
-        /* 讓播放器保持極小的大小以利啟動，但隱藏起來不干擾視覺 */
+        /* 關鍵優化：用極小的視覺隱藏替代 display:none，確保 YouTube API 正常加載音訊流 */
         #player-container {
             position: absolute;
             width: 1px;
@@ -197,6 +197,7 @@
         <div class="form-group">
             <label>專屬點歌神曲（可先點擊 ▶ 試聽經典副歌）</label>
             <div class="song-list">
+                <!-- 歌曲 1 -->
                 <div class="song-item">
                     <label class="song-info">
                         <input type="radio" name="selectedSong" value="下一個天亮" required>
@@ -207,6 +208,7 @@
                     </label>
                     <button type="button" class="btn-play" onclick="togglePlay('AEUmLttrY5s', 58, this)">▶ 試聽</button>
                 </div>
+                <!-- 歌曲 2 -->
                 <div class="song-item">
                     <label class="song-info">
                         <input type="radio" name="selectedSong" value="心牆">
@@ -217,6 +219,7 @@
                     </label>
                     <button type="button" class="btn-play" onclick="togglePlay('VhCRokYVF1I', 66, this)">▶ 試聽</button>
                 </div>
+                <!-- 歌曲 3 -->
                 <div class="song-item">
                     <label class="song-info">
                         <input type="radio" name="selectedSong" value="我不想忘記你">
@@ -227,6 +230,7 @@
                     </label>
                     <button type="button" class="btn-play" onclick="togglePlay('K-xda8e2FLc', 70, this)">▶ 試聽</button>
                 </div>
+                <!-- 歌曲 4 -->
                 <div class="song-item">
                     <label class="song-info">
                         <input type="radio" name="selectedSong" value="在樹上唱歌">
@@ -237,6 +241,7 @@
                     </label>
                     <button type="button" class="btn-play" onclick="togglePlay('yCq3RLCn2i0', 50, this)">▶ 試聽</button>
                 </div>
+                <!-- 歌曲 5 -->
                 <div class="song-item">
                     <label class="song-info">
                         <input type="radio" name="selectedSong" value="不藥而癒">
@@ -259,6 +264,7 @@
     </form>
 </div>
 
+<!-- 播放器容器 -->
 <div id="player-container">
     <div id="yt-player"></div>
 </div>
@@ -273,7 +279,7 @@
     var player;
     var currentButton = null;
     var stopTimeout;
-    const PLAY_DURATION = 30000; // 30 秒
+    const PLAY_DURATION = 30000; // 預設試聽 30 秒
 
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('yt-player', {
@@ -282,7 +288,7 @@
             videoId: '',
             playerVars: {
                 'autoplay': 0,
-                'playsinline': 1,
+                'playsinline': 1, // 防止手機端強制全螢幕播放
                 'controls': 0,
                 'rel': 0
             },
@@ -294,7 +300,7 @@
     }
 
     function onPlayerReady(event) {
-        player.setVolume(80);
+        player.setVolume(80); // 初始化音量為 80
     }
 
     function togglePlay(videoId, startTime, button) {
@@ -318,6 +324,7 @@
         button.innerText = "■ 停止";
         button.classList.add('playing');
 
+        // 解除瀏覽器可能引發的靜音鎖定
         if(typeof player.unMute === 'function') {
             player.unMute();
         }
