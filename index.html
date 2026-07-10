@@ -341,8 +341,9 @@
         </form>
     </div>
 </div>
+
 <script>
-    // 完美的全新 GAS 部署網址
+    // 【已更新部署作業 ID】建立前端與最新 API 節點的精確連接
     const gasWebUrl = "https://script.google.com/macros/s/AKfycbwQJGavpnsRyTL6xRXjvFWVfyPT4uIjf50MAvVjXMuJlxkKdfisCwN6JBtX8bTcr3V_lg/exec";
 
     window.addEventListener('DOMContentLoaded', fetchVotes);
@@ -364,6 +365,7 @@
         })
         .catch(error => {
             console.error("讀取票數發生網路異常:", error);
+            alert("目前伺服器連線中，請稍候片刻或重新整理！");
         });
     }
 
