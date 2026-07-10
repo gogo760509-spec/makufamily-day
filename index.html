@@ -32,10 +32,9 @@
             width: 100%;
             max-width: 600px;
             box-sizing: border-box;
-            overflow: hidden; /* 確保上方圖片圓角不會被切掉 */
+            overflow: hidden;
         }
 
-        /* 主視覺圖片樣式設計 */
         .main-banner {
             width: 100%;
             height: auto;
@@ -64,6 +63,53 @@
             margin: 0;
             font-size: 14px;
             line-height: 1.6;
+        }
+
+        /* 歌手介紹卡片美化 CSS */
+        .singer-card {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .singer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover; /* 確保照片裁切成完美圓形不變形 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-right: 15px;
+            border: 2px solid white;
+            flex-shrink: 0;
+        }
+
+        .singer-info-text .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+        }
+
+        .singer-info-text .name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0 0 4px 0;
+        }
+
+        .singer-info-text .bio {
+            font-size: 13px;
+            color: #4a5568;
+            margin: 0;
+            line-height: 1.4;
         }
 
         .form-group {
@@ -187,6 +233,15 @@
             <p>海岸音樂會：同仁專屬點歌許願池！<br>期待在海風與歌聲陪伴下，一同度過美好時光。請選出您最想聽的神曲！</p>
         </div>
 
+        <div class="singer-card">
+            <img src="singer.jpg" alt="活動嘉賓郭靜" class="singer-avatar">
+            <div class="singer-info-text">
+                <span class="tag">活動嘉賓</span>
+                <h3 class="name">純愛天后 ｜ 郭靜 Claire</h3>
+                <p class="bio">用最溫柔的純愛系歌聲，陪伴馬光同仁在海風吹拂的港灣畔，合唱出最動人的青春旋律。</p>
+            </div>
+        </div>
+
         <form id="voteForm" onsubmit="submitForm(event)">
             <div class="form-group">
                 <label for="nickname">同仁暱稱</label>
@@ -241,7 +296,7 @@
                             <input type="radio" name="selectedSong" value="不藥而癒">
                             <div class="song-details">
                                 <span class="title">不藥而癒</span>
-                                <span class="desc">標準療傷情歌，陪伴無數人度過失戀期。</span>
+                                <span class="desc">標準療傷情歌，陪伴無數人度過失戀期.</span>
                             </div>
                         </label>
                         <a href="https://youtu.be/DduKGmRCqio?t=63" target="_blank" class="btn-play">▶ 試聽</a>
