@@ -242,4 +242,177 @@
 
     <div class="form-content">
         <div class="header">
-            <h1>【2026馬光家庭日】純愛天
+            <h1>【2026馬光家庭日】純愛天后「郭靜」</h1>
+            <p>海岸音樂會：同仁專屬點歌許願池！<br>期待在海風與歌聲陪伴下，一同度過美好時光。請選出您最想聽的神曲！</p>
+        </div>
+
+        <div class="singer-card">
+            <img src="singer.jpg?v=2" alt="活動嘉賓郭靜" class="singer-avatar">
+            <div class="singer-info-text">
+                <span class="tag">活動嘉賓</span>
+                <h3 class="name">純愛天后 ｜ 郭靜 Claire</h3>
+                <p class="bio">用最溫柔的純愛系歌聲，陪伴馬光同仁在海風吹拂的港灣畔，合唱出最動人的青春旋律。</p>
+            </div>
+        </div>
+
+        <form id="voteForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="nickname">同仁暱稱</label>
+                <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
+            </div>
+
+            <div class="form-group">
+                <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
+                <div class="song-list">
+                    <div class="song-item">
+                        <label class="song-info">
+                            <input type="radio" name="selectedSong" value="下一個天亮" required>
+                            <div class="song-details">
+                                <div class="title-wrapper">
+                                    <span class="title">下一個天亮</span>
+                                    <span class="vote-badge" id="count-下一個天亮">讀取中...</span>
+                                </div>
+                                <span class="desc">國民級療癒神曲，大合唱必備！</span>
+                            </div>
+                        </label>
+                        <a href="https://youtu.be/AEUmLttrY5s?t=58" target="_blank" class="btn-play">▶ 試聽</a>
+                    </div>
+                    <div class="song-item">
+                        <label class="song-info">
+                            <input type="radio" name="selectedSong" value="心牆">
+                            <div class="song-details">
+                                <div class="title-wrapper">
+                                    <span class="title">心牆</span>
+                                    <span class="vote-badge" id="count-心牆">讀取中...</span>
+                                </div>
+                                <span class="desc">經典偶像劇片尾曲，KTV 必點！</span>
+                            </div>
+                        </label>
+                        <a href="https://youtu.be/VhCRokYVF1I?t=66" target="_blank" class="btn-play">▶ 試聽</a>
+                    </div>
+                    <div class="song-item">
+                        <label class="song-info">
+                            <input type="radio" name="selectedSong" value="我不想忘記你">
+                            <div class="song-details">
+                                <div class="title-wrapper">
+                                    <span class="title">我不想忘記你</span>
+                                    <span class="vote-badge" id="count-我不想忘記你">讀取中...</span>
+                                </div>
+                                <span class="desc">純愛風格的起點，最溫柔的郭式情歌。</span>
+                            </div>
+                        </label>
+                        <a href="https://youtu.be/K-xda8e2FLc?t=70" target="_blank" class="btn-play">▶ 試聽</a>
+                    </div>
+                    <div class="song-item">
+                        <label class="song-info">
+                            <input type="radio" name="selectedSong" value="在樹上唱歌">
+                            <div class="song-details">
+                                <div class="title-wrapper">
+                                    <span class="title">在樹上唱歌</span>
+                                    <span class="vote-badge" id="count-在樹上唱歌">讀取中...</span>
+                                </div>
+                                <span class="desc">金曲獎輕快俏皮風，聽了心情會變好。</span>
+                            </div>
+                        </label>
+                        <a href="https://youtu.be/yCq3RLCn2i0?t=50" target="_blank" class="btn-play">▶ 試聽</a>
+                    </div>
+                    <div class="song-item">
+                        <label class="song-info">
+                            <input type="radio" name="selectedSong" value="不藥而癒">
+                            <div class="song-details">
+                                <div class="title-wrapper">
+                                    <span class="title">不藥而癒</span>
+                                    <span class="vote-badge" id="count-不藥而癒">讀取中...</span>
+                                </div>
+                                <span class="desc">標準療傷情歌，陪伴無數人度過失戀期。</span>
+                            </div>
+                        </label>
+                        <a href="https://youtu.be/DduKGmRCqio?t=63" target="_blank" class="btn-play">▶ 試聽</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">許願池留言 / 想對郭靜說的話</label>
+                <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">送出點歌許願</button>
+        </form>
+    </div>
+</div>
+<script>
+    // 完美的全新 GAS 部署網址
+    const gasWebUrl = "https://script.google.com/macros/s/AKfycbwQJGavpnsRyTL6xRXjvFWVfyPT4uIjf50MAvVjXMuJlxkKdfisCwN6JBtX8bTcr3V_lg/exec";
+
+    window.addEventListener('DOMContentLoaded', fetchVotes);
+
+    function fetchVotes() {
+        fetch(gasWebUrl)
+        .then(response => response.json())
+        .then(data => {
+            if(data.result === "success") {
+                for (const [songName, count] of Object.entries(data.votes)) {
+                    const badge = document.getElementById(`count-${songName}`);
+                    if (badge) {
+                        badge.innerText = `${count} 票`;
+                    }
+                }
+            } else {
+                console.error("無法載入即時票數");
+            }
+        })
+        .catch(error => {
+            console.error("讀取票數發生網路異常:", error);
+        });
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        const nickname = document.getElementById('nickname').value;
+        const selectedSong = document.querySelector('input[name="selectedSong"]:checked').value;
+        const message = document.getElementById('message').value;
+        const submitBtn = document.querySelector('.btn-submit');
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "正在傳送許願池...";
+
+        const payload = {
+            nickname: nickname,
+            selectedSong: selectedSong,
+            message: message
+        };
+
+        fetch(gasWebUrl, {
+            method: "POST",
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.result === "success") {
+                alert(`🎉 點歌成功！您的願望已送入許願池囉！\n\n同仁暱稱：${nickname}\n點選歌曲：${selectedSong}`);
+                
+                const targetBadge = document.getElementById(`count-${selectedSong}`);
+                if (targetBadge) {
+                    const currentCount = parseInt(targetBadge.innerText) || 0;
+                    targetBadge.innerText = `${currentCount + 1} 票`;
+                }
+                
+                document.getElementById('voteForm').reset();
+            } else {
+                alert("系統寫入失敗，請稍後再試！ 錯誤訊息: " + data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("網路連線或伺服器異常，請確認後再試！");
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "送出點歌許願";
+        });
+    }
+</script>
+</body>
+</html>
