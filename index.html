@@ -175,18 +175,19 @@
             border-bottom: none;
         }
 
-        /* 💡 核心優化：將主要的點選區域設定為完備的 Flexbox 置中環境 */
+        /* 💡 核心優化：給予硬性寬度與最高優先權，打破 label 標籤的預設塌陷行為 */
         .song-info {
-            display: flex;
-            align-items: center; 
+            display: flex !important;
+            align-items: center !important; 
             flex: 1;
+            width: 100%;
             cursor: pointer;
             z-index: 1;
             margin-right: 10px;
-            min-width: 0; /* 防止子元素溢出 */
+            min-width: 0;
         }
 
-        /* 💡 核心優化：專門限制左側勾選框的容器，強制阻斷任何向上位移的渲染錯誤 */
+        /* 💡 核心優化：加入自動邊距對齊，強迫勾選框在任何情況下都絕對水平垂直置中 */
         .checkbox-wrapper {
             display: flex;
             align-items: center;
@@ -194,6 +195,8 @@
             width: 24px;
             height: 24px;
             margin-right: 12px;
+            margin-top: auto !important;
+            margin-bottom: auto !important;
             flex-shrink: 0;
         }
 
@@ -204,7 +207,6 @@
             cursor: pointer;
         }
 
-        /* 💡 核心優化：右側獨立文字區塊 */
         .song-info-block {
             display: flex;
             flex-direction: column;
@@ -245,7 +247,7 @@
             letter-spacing: 0.3px;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; /* 超出長度自動遮罩 */
+            text-overflow: ellipsis;
         }
 
         .btn-play {
@@ -299,7 +301,7 @@
         </div>
 
         <div class="singer-card">
-            <img src="singer.jpg?v=2" alt="活動嘉嘉宾郭靜" class="singer-avatar">
+            <img src="singer.jpg?v=2" alt="活動嘉賓郭靜" class="singer-avatar">
             <div class="singer-info-text">
                 <span class="tag">活動嘉賓</span>
                 <h3 class="name">純愛天后 ｜ 郭靜 Claire</h3>
@@ -322,7 +324,6 @@
                     <!-- 1. 下一個天亮 -->
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
                         <label class="song-info">
-                            <!-- 💡 重構：為勾選框加上獨立的 wrapper 限制 -->
                             <div class="checkbox-wrapper">
                                 <input type="checkbox" name="selectedSong" value="下一個天亮" onchange="checkMaxSelection(this)">
                             </div>
@@ -629,7 +630,7 @@
         .catch(error => alert("連線伺服器異常，請重新再試！"))
         .finally(() => {
             submitBtn.disabled = false;
-            submitBtn.innerText = "送出點歌送願";
+            submitBtn.innerText = "送出點歌許願";
         });
     }
 </script>
