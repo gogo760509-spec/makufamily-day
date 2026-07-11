@@ -142,7 +142,7 @@
             max-height: 450px;
             overflow-y: auto;
             display: flex;
-            flex-direction: column; /* 允許動態變更上下排序結構 */
+            flex-direction: column;
         }
 
         .song-item {
@@ -150,21 +150,21 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px;
+            padding: 14px 12px;
             border-bottom: 1px solid #edf2f7;
-            transition: all 0.4s ease; /* 排序移動時有滑順動畫 */
+            transition: all 0.4s ease;
             background-color: transparent;
             overflow: hidden;
         }
 
-        /* 💡 長條圖背景基底樣式 */
+        /* 長條圖背景 */
         .progress-bar-bg {
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
-            width: 0%; /* 由 JavaScript 動態控制百分比寬度 */
-            background-color: rgba(49, 151, 149, 0.08); /* 淡淡的馬光綠長條圖 */
+            width: 0%;
+            background-color: rgba(49, 151, 149, 0.08);
             transition: width 0.8s ease-in-out;
             z-index: 0;
             pointer-events: none;
@@ -176,26 +176,39 @@
 
         .song-info {
             display: flex;
-            align-items: center;
+            align-items: flex-start; /* 改為置頂對齊，讓多行簡介更好看 */
             flex: 1;
             cursor: pointer;
-            z-index: 1; /* 確保文字在長條圖上方 */
+            z-index: 1;
+            margin-right: 10px;
         }
 
         .song-info input {
             margin-right: 12px;
+            margin-top: 4px; /* 對齊第一行標題 */
             transform: scale(1.2);
+            flex-shrink: 0;
+        }
+
+        /* 💡 核心修正：確保內部文字強制以行方向（Column）垂直排列，絕不重疊 */
+        .song-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px; /* 標題與簡介的間距 */
+            width: 100%;
         }
 
         .title-wrapper {
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 2px;
+            flex-wrap: wrap; /* 避免手機板寬度不夠時字擠在一起 */
         }
 
         .song-details .title {
             font-weight: bold;
+            font-size: 16px;
+            line-height: 1.4;
         }
 
         .vote-badge {
@@ -205,11 +218,17 @@
             font-weight: bold;
             padding: 2px 8px;
             border-radius: 12px;
+            white-space: nowrap;
         }
 
+        /* 💡 核心修正：簡介文字設定明確的高度秩序與行高 */
         .song-details .desc {
-            font-size: 12px;
+            font-size: 13px;
             color: #718096;
+            line-height: 1.5;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
 
         .btn-play {
@@ -283,6 +302,7 @@
                 
                 <div class="song-list" id="songContainer">
                     
+                    <!-- 1. 下一個天亮 -->
                     <div class="song-item" data-song="下一個天亮">
                         <div class="progress-bar-bg" id="bar-下一個天亮"></div>
                         <label class="song-info">
@@ -298,6 +318,7 @@
                         <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 2. 心牆 -->
                     <div class="song-item" data-song="心牆">
                         <div class="progress-bar-bg" id="bar-心牆"></div>
                         <label class="song-info">
@@ -313,6 +334,7 @@
                         <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 3. 我不想忘記你 -->
                     <div class="song-item" data-song="我不想忘記你">
                         <div class="progress-bar-bg" id="bar-我不想忘記你"></div>
                         <label class="song-info">
@@ -328,6 +350,7 @@
                         <a href="https://youtu.be/K-xda8e2FLc?t=80" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 4. 在樹上唱歌 -->
                     <div class="song-item" data-song="在樹上唱歌">
                         <div class="progress-bar-bg" id="bar-在樹上唱歌"></div>
                         <label class="song-info">
@@ -343,6 +366,7 @@
                         <a href="https://youtu.be/yCq3RLCn2i0?t=63" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 5. 陪著我的時候想著她 -->
                     <div class="song-item" data-song="陪著我的時候想著她">
                         <div class="progress-bar-bg" id="bar-陪著我的時候想著她"></div>
                         <label class="song-info">
@@ -358,6 +382,7 @@
                         <a href="https://youtu.be/Hn8yhgxpzS4?t=98" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 6. know 知道 -->
                     <div class="song-item" data-song="know 知道">
                         <div class="progress-bar-bg" id="bar-know_知道"></div>
                         <label class="song-info">
@@ -373,6 +398,7 @@
                         <a href="https://youtu.be/ROKxPtX-vt8?t=57" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 7. 不藥而癒 -->
                     <div class="song-item" data-song="不藥而癒">
                         <div class="progress-bar-bg" id="bar-不藥而癒"></div>
                         <label class="song-info">
@@ -388,6 +414,7 @@
                         <a href="https://youtu.be/DduKGmRCqio?t=61" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 8. 仨人 -->
                     <div class="song-item" data-song="仨人">
                         <div class="progress-bar-bg" id="bar-仨人"></div>
                         <label class="song-info">
@@ -403,6 +430,7 @@
                         <a href="https://youtu.be/L8sEFu9ByaA?t=70" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 9. 每一天都不同 -->
                     <div class="song-item" data-song="每一天都不同">
                         <div class="progress-bar-bg" id="bar-每一天都不同"></div>
                         <label class="song-info">
@@ -418,6 +446,7 @@
                         <a href="https://youtu.be/0ZJ5ueYy-j4?t=62" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 10. 我們都能幸福著 -->
                     <div class="song-item" data-song="我們都能幸福著">
                         <div class="progress-bar-bg" id="bar-我們都能幸福著"></div>
                         <label class="song-info">
@@ -433,6 +462,7 @@
                         <a href="https://youtu.be/nn18FrDexFE?t=76" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
+                    <!-- 11. 往未來飛的客機 -->
                     <div class="song-item" data-song="往未來飛的客機">
                         <div class="progress-bar-bg" id="bar-往未來飛的客機"></div>
                         <label class="song-info">
@@ -463,8 +493,6 @@
 
 <script>
     const gasWebUrl = "https://script.google.com/macros/s/AKfycbzbfBxctNIrO_GkZY557I4ZFwPUubjmkQIYpQ2ybOQ7zKINvoI2Anmvts-aiYSYsoVG_g/exec";
-
-    // 全域儲存目前的票數狀況，方便隨時排序與計算百分比
     let currentVotesData = {};
 
     window.addEventListener('DOMContentLoaded', fetchVotes);
@@ -481,15 +509,12 @@
         .catch(error => console.error("計票載入失敗:", error));
     }
 
-    // 💡 核心演算：計算動態長條圖與即時排行榜排序
     function updatePageRanking() {
         let totalVotes = 0;
-        // 1. 計算總票數
         for (const count of Object.values(currentVotesData)) {
             totalVotes += parseInt(count) || 0;
         }
 
-        // 2. 更新每首歌的文字票數與長條圖寬度百分比
         for (const [songName, count] of Object.entries(currentVotesData)) {
             const formattedName = songName.replace(" ", "_");
             const badge = document.getElementById(`count-${formattedName}`);
@@ -498,13 +523,11 @@
             if (badge) badge.innerText = `${count} 票`;
             
             if (bar) {
-                // 如果總票數是 0 則顯示 0%，否則計算相對佔比
                 const percentage = totalVotes === 0 ? 0 : Math.round((count / totalVotes) * 100);
                 bar.style.width = `${percentage}%`;
             }
         }
 
-        // 3. 執行即時 DOM 下上排序
         const container = document.getElementById('songContainer');
         const items = Array.from(container.getElementsByClassName('song-item'));
 
@@ -513,10 +536,9 @@
             const nameB = b.getAttribute('data-song');
             const voteA = parseInt(currentVotesData[nameA]) || 0;
             const voteB = parseInt(currentVotesData[nameB]) || 0;
-            return voteB - voteA; // 由大到小降冪排序
+            return voteB - voteA;
         });
 
-        // 依據排序結果重新將歌曲塞入網頁框中
         items.forEach(item => container.appendChild(item));
     }
 
@@ -527,6 +549,8 @@
             element.checked = false; 
         }
     }
+
+    grid = null; // 清除潛在全域衝突
 
     function submitForm(event) {
         event.preventDefault();
@@ -563,7 +587,6 @@
             if(data.result === "success") {
                 alert(`🎉 投票成功！您的願望已送入許願池囉！\n\n同仁暱稱：${nickname}\n複選歌曲：${combinedSongs}`);
                 
-                // 體驗優化：前端立刻對記憶體數據加票並執行即時動畫排序
                 checkedBoxes.forEach(box => {
                     if (currentVotesData.hasOwnProperty(box.value)) {
                         currentVotesData[box.value]++;
