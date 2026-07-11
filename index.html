@@ -152,11 +152,36 @@
             border-radius: 8px;
             padding: 6px;
             background-color: #f7fafc;
-            max-height: 480px;
-            overflow-y: auto;
+            /* 💡 核心優化：高度微調為 440px，讓底部歌曲自然被切掉一半，提示還有內容 */
+            max-height: 440px; 
+            overflow-y: scroll; /* 強制開啟垂直滾動軌道 */
             display: flex;
             flex-direction: column;
             gap: 6px;
+            -webkit-overflow-scrolling: touch; /* 讓手機版滾動有流暢的滑行阻尼感 */
+        }
+
+        /* 💡 核心優化：針對手機與電腦端，客製化永遠常駐顯示的精美粉藍色滾動軸 */
+        .song-list::-webkit-scrollbar {
+            width: 8px; /* 設定適中且明顯的寬度 */
+            display: block;
+        }
+
+        /* 滾動軸軌道背景 */
+        .song-list::-webkit-scrollbar-track {
+            background: #edf2f7;
+            border-radius: 4px;
+        }
+
+        /* 滾動軸拉條主體 */
+        .song-list::-webkit-scrollbar-thumb {
+            background-color: #38b2ac; /* 改用粉藍色，呼叫整體視覺 */
+            border-radius: 4px;
+            border: 1px solid #edf2f7; /* 預留邊界線增加立體感 */
+        }
+
+        .song-list::-webkit-scrollbar-thumb:hover {
+            background-color: #2c7a7b;
         }
 
         .song-item {
@@ -203,7 +228,6 @@
             align-self: stretch;
         }
 
-        /* 💡 樣式優化：將背景長條圖顏色更換為明亮吸睛、具有海洋風情的「亮粉藍色」 */
         .song-info-block::before {
             content: "";
             position: absolute;
@@ -211,7 +235,7 @@
             top: 0;
             bottom: 0;
             width: var(--progress, 0%);
-            background-color: rgba(56, 178, 172, 0.22); /* 清爽海岸粉藍色 (明度高、顯色明顯) */
+            background-color: rgba(56, 178, 172, 0.22); /* 亮麗透明粉藍色計票長條圖 */
             border-radius: 4px;
             transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
@@ -345,6 +369,7 @@
                 
                 <div class="song-list" id="songContainer">
                     
+                    <!-- 1. 下一個天亮 -->
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="下一個天亮" id="chk-下一個天亮" onchange="checkMaxSelection(this)">
@@ -363,6 +388,7 @@
                         </div>
                     </div>
 
+                    <!-- 2. 心牆 -->
                     <div class="song-item" data-song="心牆" id="item-心牆">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="心牆" id="chk-心牆" onchange="checkMaxSelection(this)">
@@ -381,9 +407,10 @@
                         </div>
                     </div>
 
+                    <!-- 3. 我不想忘記你 -->
                     <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
                         <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="我不想忘記原" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
+                            <input type="checkbox" name="selectedSong" value="我不想忘記你" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
                         </div>
                         <label class="song-info" for="chk-我不想忘記你">
                             <div class="song-info-block">
@@ -399,6 +426,7 @@
                         </div>
                     </div>
 
+                    <!-- 4. 在樹上唱歌 -->
                     <div class="song-item" data-song="在樹上唱歌" id="item-在樹上唱歌">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="在樹上唱歌" id="chk-在樹上唱歌" onchange="checkMaxSelection(this)">
@@ -417,6 +445,7 @@
                         </div>
                     </div>
 
+                    <!-- 5. 陪著我的時候想著她 -->
                     <div class="song-item" data-song="陪著我的時候想著她" id="item-陪著我的時候想著她">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" id="chk-陪著我的時候想著她" onchange="checkMaxSelection(this)">
@@ -435,6 +464,7 @@
                         </div>
                     </div>
 
+                    <!-- 6. know 知道 -->
                     <div class="song-item" data-song="know 知道" id="item-know_知道">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="know 知道" id="chk-know_知道" onchange="checkMaxSelection(this)">
@@ -453,6 +483,7 @@
                         </div>
                     </div>
 
+                    <!-- 7. 不藥而癒 -->
                     <div class="song-item" data-song="不藥而癒" id="item-不藥而癒">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="不藥而癒" id="chk-不藥而癒" onchange="checkMaxSelection(this)">
@@ -471,6 +502,7 @@
                         </div>
                     </div>
 
+                    <!-- 8. 仨人 -->
                     <div class="song-item" data-song="仨人" id="item-仨人">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="仨人" id="chk-仨人" onchange="checkMaxSelection(this)">
@@ -489,6 +521,7 @@
                         </div>
                     </div>
 
+                    <!-- 9. 每一天都不同 -->
                     <div class="song-item" data-song="每一天都不同" id="item-每一天都不同">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="每一天都不同" id="chk-每一天都不同" onchange="checkMaxSelection(this)">
@@ -507,6 +540,7 @@
                         </div>
                     </div>
 
+                    <!-- 10. 我們都能幸福著 -->
                     <div class="song-item" data-song="我們都能幸福著" id="item-我們都能幸福著">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="我們都能幸福著" id="chk-我們都能幸福著" onchange="checkMaxSelection(this)">
@@ -525,6 +559,7 @@
                         </div>
                     </div>
 
+                    <!-- 11. 往未來飛的客機 -->
                     <div class="song-item" data-song="往未來飛的客機" id="item-往未來飛的客機">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="往未來飛的客機" id="chk-往未來飛的客機" onchange="checkMaxSelection(this)">
@@ -665,7 +700,7 @@
         .catch(error => alert("連線伺服器異常，請重新再試！"))
         .finally(() => {
             submitBtn.disabled = false;
-            submitBtn.innerText = "送出點歌許願";
+            submitBtn.innerText = "送出點歌幕願";
         });
     }
 </script>
