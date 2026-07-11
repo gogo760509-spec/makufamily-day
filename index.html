@@ -127,16 +127,24 @@
         }
 
         .notice-badge {
-            font-size: 12px;
+            font-size: 12.5px;
             color: #dd6b20;
             background-color: #fffaf0;
             border: 1px dashed #fbd38d;
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 10px 14px;
+            border-radius: 8px;
             margin-bottom: 12px;
             font-weight: normal;
             display: block;
-            line-height: 1.4;
+            line-height: 1.6;
+        }
+
+        .notice-line {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .notice-line:last-child {
+            margin-bottom: 0;
         }
 
         .song-list {
@@ -151,7 +159,6 @@
             gap: 6px;
         }
 
-        /* 💡 核心優化：大外層強制水平置中，限制整體高度 */
         .song-item {
             display: flex;
             align-items: center;
@@ -168,7 +175,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
 
-        /* 💡 核心優化：左側勾選框單獨成立一欄，永遠垂直置中 */
         .checkbox-wrapper {
             display: flex;
             align-items: center;
@@ -186,7 +192,6 @@
             cursor: pointer;
         }
 
-        /* 💡 核心優化：中間文字大區塊，長條圖直接改綁在這裡，與勾選框完全物理切離 */
         .song-info-block {
             flex: 1;
             display: flex;
@@ -195,10 +200,10 @@
             padding: 2px 4px;
             min-width: 0;
             position: relative;
-            align-self: stretch; /* 撐滿上下高度讓背景長條圖填滿 */
+            align-self: stretch;
         }
 
-        /* 新型長條圖渲染層 */
+        /* 💡 樣式優化：將背景長條圖顏色更換為明亮吸睛、具有海洋風情的「亮粉藍色」 */
         .song-info-block::before {
             content: "";
             position: absolute;
@@ -206,7 +211,7 @@
             top: 0;
             bottom: 0;
             width: var(--progress, 0%);
-            background-color: rgba(49, 151, 149, 0.08); /* 淡綠色計票條 */
+            background-color: rgba(56, 178, 172, 0.22); /* 清爽海岸粉藍色 (明度高、顯色明顯) */
             border-radius: 4px;
             transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
@@ -217,7 +222,7 @@
             align-items: center;
             gap: 6px;
             flex-wrap: wrap; 
-            z-index: 1; /* 確保文字在長條圖上方 */
+            z-index: 1;
         }
 
         .song-info-block .title {
@@ -245,7 +250,6 @@
             line-height: 1.4;
         }
 
-        /* 💡 核心優化：右側試聽按鈕固定寬度，絕不跑位擠壓 */
         .btn-play-wrapper {
             display: flex;
             align-items: center;
@@ -332,7 +336,12 @@
 
             <div class="form-group">
                 <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
-                <span class="notice-badge">💡 溫馨提醒：每位同仁最多可以「複選 3 首」最想聽的神曲喔！排行榜將依票數即時變動！</span>
+                
+                <div class="notice-badge">
+                    <span class="notice-line">🎤 每次投票可複選 3 首歌曲</span>
+                    <span class="notice-line">💖 不限帳號皆可投票，一起把最想聽的神曲推上排行榜！</span>
+                    <span class="notice-line">🔥 票數即時更新，排名隨時變動，快來看看你的愛歌衝到第幾名！</span>
+                </div>
                 
                 <div class="song-list" id="songContainer">
                     
@@ -374,7 +383,7 @@
 
                     <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
                         <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="我不想忘記你" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
+                            <input type="checkbox" name="selectedSong" value="我不想忘記原" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
                         </div>
                         <label class="song-info" for="chk-我不想忘記你">
                             <div class="song-info-block">
