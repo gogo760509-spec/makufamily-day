@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【2026馬光家庭日】純愛天后「郭靜」海岸音樂會：同仁專屬點歌許願池</title>
+    <title>【2026馬光家庭日】⚓ 港灣音樂會｜馬光人專屬點歌許願池</title>
     <style>
         :root {
             --primary-color: #2b6cb0;
@@ -91,7 +91,7 @@
             flex-shrink: 0;
         }
 
-        .singer-info-text .tag {
+        .singer-card .tag {
             display: inline-block;
             background-color: var(--secondary-color);
             color: white;
@@ -102,14 +102,14 @@
             margin-bottom: 4px;
         }
 
-        .singer-info-text .name {
+        .singer-card .name {
             font-size: 16px;
             font-weight: bold;
             color: var(--primary-color);
             margin: 0 0 4px 0;
         }
 
-        .singer-info-text .bio {
+        .singer-card .bio {
             font-size: 12px;
             color: #4a5568;
             margin: 0;
@@ -161,7 +161,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* 手機與電腦端常駐型粉藍色滾動軸 */
+        /* 常駐型粉藍色滾動軸樣式 */
         .song-list::-webkit-scrollbar {
             width: 8px;
             display: block;
@@ -226,7 +226,7 @@
             align-self: stretch;
         }
 
-        /* 亮麗透明粉藍色計票長條圖 */
+        /* 亮麗粉藍色計票長條圖 */
         .song-info-block::before {
             content: "";
             position: absolute;
@@ -353,7 +353,7 @@
 
         <form id="voteForm" onsubmit="submitForm(event)">
             <div class="form-group">
-                <label for="nickname">🎧 點歌人</label>
+                <label for="nickname">🎧 點歌人（暱稱）</label>
                 <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
             </div>
 
@@ -367,7 +367,6 @@
                 
                 <div class="song-list" id="songContainer">
                     
-                    <!-- 1. 下一個天亮 -->
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="下一個天亮" id="chk-下一個天亮" onchange="checkMaxSelection(this)">
@@ -386,7 +385,6 @@
                         </div>
                     </div>
 
-                    <!-- 2. 心牆 -->
                     <div class="song-item" data-song="心牆" id="item-心牆">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="心牆" id="chk-心牆" onchange="checkMaxSelection(this)">
@@ -405,16 +403,14 @@
                         </div>
                     </div>
 
-                    <!-- 3. 我不想忘記你 -->
                     <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="我不想忘記你" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
                         </div>
-                        <label class="song-info" for="chk-我不想忘記你">
+                        <label class="song-info" for="chk-我不想忘記คุณ">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">我不想忘記你</span>
-                                    <!-- 💡 核心 Bug 修正：已將 count-快不想忘記你 修正為 count-我不想忘記你，恢復資料連動機制 -->
                                     <span class="vote-badge" id="count-我不想忘記你">讀取中...</span>
                                     <span class="desc">｜ 最溫柔的郭式純愛起點</span>
                                 </div>
@@ -425,7 +421,6 @@
                         </div>
                     </div>
 
-                    <!-- 4. 在樹上唱歌 -->
                     <div class="song-item" data-song="在樹上唱歌" id="item-在樹上唱歌">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="在樹上唱歌" id="chk-在樹上唱歌" onchange="checkMaxSelection(this)">
@@ -444,7 +439,6 @@
                         </div>
                     </div>
 
-                    <!-- 5. 陪著我的時候想著她 -->
                     <div class="song-item" data-song="陪著我的時候想著她" id="item-陪著我的時候想著她">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" id="chk-陪著我的時候想著她" onchange="checkMaxSelection(this)">
@@ -463,15 +457,14 @@
                         </div>
                     </div>
 
-                    <!-- 6. know 知道 -->
                     <div class="song-item" data-song="know 知道" id="item-know_知道">
                         <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="know 知道" id="chk-know_ Grandma" onchange="checkMaxSelection(this)">
+                            <input type="checkbox" name="selectedSong" value="know 知道" id="chk-know_知道" onchange="checkMaxSelection(this)">
                         </div>
                         <label class="song-info" for="chk-know_知道">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
-                                    <span class="title">知道</span>
+                                    <span class="title">know 知道</span>
                                     <span class="vote-badge" id="count-know_知道">讀取中...</span>
                                     <span class="desc">｜ 內斂深情的雋永經典</span>
                                 </div>
@@ -482,7 +475,6 @@
                         </div>
                     </div>
 
-                    <!-- 7. 不藥而癒 -->
                     <div class="song-item" data-song="不藥而癒" id="item-不藥而癒">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="不藥而癒" id="chk-不藥而癒" onchange="checkMaxSelection(this)">
@@ -501,7 +493,6 @@
                         </div>
                     </div>
 
-                    <!-- 8. 仨人 -->
                     <div class="song-item" data-song="仨人" id="item-仨人">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="仨人" id="chk-仨人" onchange="checkMaxSelection(this)">
@@ -520,7 +511,6 @@
                         </div>
                     </div>
 
-                    <!-- 9. 每一天都不同 -->
                     <div class="song-item" data-song="每一天都不同" id="item-每一天都不同">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="每一天都不同" id="chk-每一天都不同" onchange="checkMaxSelection(this)">
@@ -539,7 +529,6 @@
                         </div>
                     </div>
 
-                    <!-- 10. 我們都能幸福著 -->
                     <div class="song-item" data-song="我們都能幸福著" id="item-我們都能幸福著">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="我們都能幸福著" id="chk-我們都能幸福著" onchange="checkMaxSelection(this)">
@@ -558,7 +547,6 @@
                         </div>
                     </div>
 
-                    <!-- 11. 往未來飛的客機 -->
                     <div class="song-item" data-song="往未來飛的客機" id="item-往未來飛的客機">
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="往未來飛的客機" id="chk-往未來飛的客機" onchange="checkMaxSelection(this)">
@@ -699,7 +687,7 @@
         .catch(error => alert("連線伺服器異常，請重新再試！"))
         .finally(() => {
             submitBtn.disabled = false;
-            submitBtn.innerText = "送出點歌真願";
+            submitBtn.innerText = "送出點歌許願";
         });
     }
 </script>
