@@ -122,19 +122,16 @@
             color: var(--text-color);
         }
 
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #cbd5e0;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary-color);
+        .notice-badge {
+            font-size: 12px;
+            color: #dd6b20;
+            background-color: #fffaf0;
+            border: 1px dashed #fbd38d;
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-weight: normal;
+            display: block;
         }
 
         .song-list {
@@ -266,16 +263,17 @@
 
             <div class="form-group">
                 <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
+                <span class="notice-badge">💡 溫馨提醒：每位同仁最多可以「複選 3 首」最想聽的神曲喔！</span>
+                
                 <div class="song-list">
                     
-                    <!-- 1. 下一個天亮 (1分57秒 = 117秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="下一個天亮" required>
+                            <input type="checkbox" name="selectedSong" value="下一個天亮" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">下一個天亮</span>
-                                    <span class="vote-badge" id="count-下一個天亮">0 票</span>
+                                    <span class="vote-badge" id="count-下一個天亮">讀取中...</span>
                                 </div>
                                 <span class="desc">國民級療癒神曲，大合唱必備！</span>
                             </div>
@@ -283,14 +281,13 @@
                         <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 2. 心牆 (1分05秒 = 65秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="心牆">
+                            <input type="checkbox" name="selectedSong" value="心牆" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">心牆</span>
-                                    <span class="vote-badge" id="count-心牆">0 票</span>
+                                    <span class="vote-badge" id="count-心牆">讀取中...</span>
                                 </div>
                                 <span class="desc">經典偶像劇片尾曲，KTV 必點！</span>
                             </div>
@@ -298,14 +295,13 @@
                         <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 3. 我不想忘記你 (1分20秒 = 80秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="我不想忘記你">
+                            <input type="checkbox" name="selectedSong" value="我不想忘記你" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">我不想忘記你</span>
-                                    <span class="vote-badge" id="count-我不想忘記你">0 票</span>
+                                    <span class="vote-badge" id="count-我不想忘記你">讀取中...</span>
                                 </div>
                                 <span class="desc">純愛風格的起點，最溫柔的郭式情歌。</span>
                             </div>
@@ -313,14 +309,13 @@
                         <a href="https://youtu.be/K-xda8e2FLc?t=80" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 4. 在樹上唱歌 (1分03秒 = 63秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="在樹上唱歌">
+                            <input type="checkbox" name="selectedSong" value="在樹上唱歌" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">在樹上唱歌</span>
-                                    <span class="vote-badge" id="count-在樹上唱歌">0 票</span>
+                                    <span class="vote-badge" id="count-在樹上唱歌">讀取中...</span>
                                 </div>
                                 <span class="desc">金曲獎輕快俏皮風，聽了心情會變好。</span>
                             </div>
@@ -328,14 +323,13 @@
                         <a href="https://youtu.be/yCq3RLCn2i0?t=63" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 5. 陪著我的時候想著她 (1分38秒 = 98秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="陪著我的時候想著她">
+                            <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">陪著我的時候想著她</span>
-                                    <span class="vote-badge" id="count-陪著我的時候想著她">0 票</span>
+                                    <span class="vote-badge" id="count-陪著我的時候想著她">讀取中...</span>
                                 </div>
                                 <span class="desc">揪心系備胎神曲，情感渲染力超強。</span>
                             </div>
@@ -343,14 +337,13 @@
                         <a href="https://youtu.be/Hn8yhgxpzS4?t=98" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 6. know 知道 (0分57秒 = 57秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="know 知道">
+                            <input type="checkbox" name="selectedSong" value="know 知道" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">know 知道</span>
-                                    <span class="vote-badge" id="count-know-知道">0 票</span>
+                                    <span class="vote-badge" id="count-know_知道">讀取中...</span>
                                 </div>
                                 <span class="desc">內斂深情，默默守候的雋永經典。</span>
                             </div>
@@ -358,14 +351,13 @@
                         <a href="https://youtu.be/ROKxPtX-vt8?t=57" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 7. 不藥而癒 (1分01秒 = 61秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="不藥而癒">
+                            <input type="checkbox" name="selectedSong" value="不藥而癒" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">不藥而癒</span>
-                                    <span class="vote-badge" id="count-不藥而癒">0 票</span>
+                                    <span class="vote-badge" id="count-不藥而癒">讀取中...</span>
                                 </div>
                                 <span class="desc">標準療傷情歌，陪伴無數人度過失戀期。</span>
                             </div>
@@ -373,14 +365,13 @@
                         <a href="https://youtu.be/DduKGmRCqio?t=61" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 8. 仨人 (1分10秒 = 70秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="仨人">
+                            <input type="checkbox" name="selectedSong" value="仨人" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">仨人</span>
-                                    <span class="vote-badge" id="count-仨人">0 票</span>
+                                    <span class="vote-badge" id="count-仨人">讀取中...</span>
                                 </div>
                                 <span class="desc">最具代表性的閨蜜友誼之歌。</span>
                             </div>
@@ -388,14 +379,13 @@
                         <a href="https://youtu.be/L8sEFu9ByaA?t=70" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 9. 每一天都不同 (1分02秒 = 62秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="每一天都不同">
+                            <input type="checkbox" name="selectedSong" value="每一天都不同" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">每一天都不同</span>
-                                    <span class="vote-badge" id="count-每一天都不同">0 票</span>
+                                    <span class="vote-badge" id="count-每一天都不同">讀取中...</span>
                                 </div>
                                 <span class="desc">充滿正能量的勵志歌曲，給予生活滿滿勇氣。</span>
                             </div>
@@ -403,14 +393,13 @@
                         <a href="https://youtu.be/0ZJ5ueYy-j4?t=62" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 10. 我們都能幸福著 (1分16秒 = 76秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="我們都能幸福著">
+                            <input type="checkbox" name="selectedSong" value="我們都能幸福著" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">我們都能幸福著</span>
-                                    <span class="vote-badge" id="count-我們都能幸福著">0 票</span>
+                                    <span class="vote-badge" id="count-我們都能幸福著">讀取中...</span>
                                 </div>
                                 <span class="desc">成熟釋懷的愛情觀，給彼此最好的祝福。</span>
                             </div>
@@ -418,14 +407,13 @@
                         <a href="https://youtu.be/nn18FrDexFE?t=76" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 11. 往未來飛的客機 (1分07秒 = 67秒) -->
                     <div class="song-item">
                         <label class="song-info">
-                            <input type="radio" name="selectedSong" value="往未來飛的客機">
+                            <input type="checkbox" name="selectedSong" value="往未來飛的客機" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">往未來飛的客機</span>
-                                    <span class="vote-badge" id="count-往未來飛的客機">0 票</span>
+                                    <span class="vote-badge" id="count-往未來飛的客機">讀取中...</span>
                                 </div>
                                 <span class="desc">致 那些即將啟航的夢想，畢業經典曲。</span>
                             </div>
@@ -447,14 +435,90 @@
 </div>
 
 <script>
+    // 【已更新為最新版】
+    const gasWebUrl = "https://script.google.com/macros/s/AKfycbwQJGavpnsRyTL6xRXjvFWVfyPT4uIjf50MAvVjXMuJlxkKdfisCwN6JBtX8bTcr3V_lg/exec";
+
+    window.addEventListener('DOMContentLoaded', fetchVotes);
+
+    function fetchVotes() {
+        fetch(gasWebUrl)
+        .then(response => response.json())
+        .then(data => {
+            if(data.result === "success") {
+                for (const [songName, count] of Object.entries(data.votes)) {
+                    const formattedName = songName.replace(" ", "_");
+                    const badge = document.getElementById(`count-${formattedName}`);
+                    if (badge) {
+                        badge.innerText = `${count} 票`;
+                    }
+                }
+            }
+        })
+        .catch(error => console.error("計票載入失敗:", error));
+    }
+
+    function checkMaxSelection(element) {
+        const checkboxes = document.querySelectorAll('input[name="selectedSong"]:checked');
+        if (checkboxes.length > 3) {
+            alert("❌ 每人最多隻能勾選 3 首歌曲喔！");
+            element.checked = false; 
+        }
+    }
+
     function submitForm(event) {
         event.preventDefault();
-        const nickname = document.getElementById('nickname').value;
-        const selectedSong = document.querySelector('input[name="selectedSong"]:checked').value;
-        const message = document.getElementById('message').value;
 
-        alert(`🎉 點歌成功！\n\n同仁暱稱：${nickname}\n點選歌曲：${selectedSong}\n留言內容：${message || '無'}`);
-        document.getElementById('voteForm').reset();
+        const nickname = document.getElementById('nickname').value;
+        const message = document.getElementById('message').value;
+        const submitBtn = document.querySelector('.btn-submit');
+
+        const checkedBoxes = document.querySelectorAll('input[name="selectedSong"]:checked');
+        if (checkedBoxes.length === 0) {
+            alert("❌ 請至少選擇 1 首您最期待聽到的歌曲！");
+            return;
+        }
+
+        const selectedSongsArray = [];
+        checkedBoxes.forEach(box => selectedSongsArray.push(box.value));
+        const combinedSongs = selectedSongsArray.join(", ");
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "正在傳送許願池...";
+
+        const payload = {
+            nickname: nickname,
+            selectedSong: combinedSongs,
+            message: message
+        };
+
+        fetch(gasWebUrl, {
+            method: "POST",
+            body: JSON.stringify(payload)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.result === "success") {
+                alert(`🎉 投票成功！您的願望已送入許願池囉！\n\n同仁暱稱：${nickname}\n複選歌曲：${combinedSongs}`);
+                
+                checkedBoxes.forEach(box => {
+                    const formattedName = box.value.replace(" ", "_");
+                    const targetBadge = document.getElementById(`count-${formattedName}`);
+                    if (targetBadge) {
+                        const currentCount = parseInt(targetBadge.innerText) || 0;
+                        targetBadge.innerText = `${currentCount + 1} 票`;
+                    }
+                });
+                
+                document.getElementById('voteForm').reset();
+            } else {
+                alert("寫入錯誤: " + data.error);
+            }
+        })
+        .catch(error => alert("連線伺服器異常，請重新再試！"))
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = "送出點歌許願";
+        });
     }
 </script>
 </body>
