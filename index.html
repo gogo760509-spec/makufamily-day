@@ -150,7 +150,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 12px;
+            padding: 14px 12px;
             border-bottom: 1px solid #edf2f7;
             transition: transform 0.4s ease;
             background-color: transparent;
@@ -177,7 +177,7 @@
 
         .song-info {
             display: flex;
-            align-items: center; /* 💡 確保容器內所有元素垂直居中 */
+            align-items: center;
             flex: 1;
             cursor: pointer;
             z-index: 1;
@@ -190,7 +190,7 @@
             margin-bottom: 0;
             transform: scale(1.2);
             flex-shrink: 0;
-            align-self: center; /* 💡 強制勾選框在垂直軸上絕對置中 */
+            align-self: center;
         }
 
         .song-details {
@@ -202,13 +202,13 @@
         .title-wrapper {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap; 
         }
 
         .song-details .title {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
             color: var(--text-color);
         }
 
@@ -217,17 +217,19 @@
             color: #c05621;
             font-size: 11px;
             font-weight: bold;
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 12px;
             white-space: nowrap;
         }
 
+        /* 💡 核心優化：縮小副標字體、調整顏色、增加微小字距 */
         .title-wrapper .desc {
-            font-size: 13px;
+            font-size: 11.5px;
             font-weight: normal;
-            color: #718096;
-            margin-left: 4px;
+            color: #a0aec0; /* 顏色稍微調淡，讓主標更明顯 */
+            margin-left: 2px;
             display: inline-block;
+            letter-spacing: 0.3px;
         }
 
         .btn-play {
@@ -235,8 +237,8 @@
             color: white !important;
             text-decoration: none;
             border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 13px;
+            padding: 5px 12px;
+            font-size: 12.5px;
             cursor: pointer;
             transition: background-color 0.2s;
             display: inline-flex;
@@ -308,7 +310,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">下一個天亮</span>
                                     <span class="vote-badge" id="count-下一個天亮">讀取中...</span>
-                                    <span class="desc">｜ 國民級療癒神曲，大合唱必備！</span>
+                                    <span class="desc">｜ 國民級療癒大合唱神曲</span>
                                 </div>
                             </div>
                         </label>
@@ -322,7 +324,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">心牆</span>
                                     <span class="vote-badge" id="count-心牆">讀取中...</span>
-                                    <span class="desc">｜ 經典偶像劇片尾曲，KTV 必點！</span>
+                                    <span class="desc">｜ 經典偶像劇必點片尾曲</span>
                                 </div>
                             </div>
                         </label>
@@ -335,8 +337,8 @@
                             <div class="song-details">
                                 <div class="title-wrapper">
                                     <span class="title">我不想忘記你</span>
-                                    <span class="vote-badge" id="count-我不想忘記你">讀取中...</span>
-                                    <span class="desc">｜ 純愛風格的起點，最溫柔的郭式情歌。</span>
+                                    <span class="vote-badge" id="count-快不想忘記你">讀取中...</span>
+                                    <span class="desc">｜ 最溫柔的郭式純愛起點</span>
                                 </div>
                             </div>
                         </label>
@@ -350,7 +352,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">在樹上唱歌</span>
                                     <span class="vote-badge" id="count-在樹上唱歌">讀取中...</span>
-                                    <span class="desc">｜ 金曲獎輕快俏皮風，聽了心情會變好。</span>
+                                    <span class="desc">｜ 金曲獎輕快俏皮代表作</span>
                                 </div>
                             </div>
                         </label>
@@ -364,7 +366,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">陪著我的時候想著她</span>
                                     <span class="vote-badge" id="count-陪著我的時候想著她">讀取中...</span>
-                                    <span class="desc">｜ 揪心系備胎神曲，情感渲染力超強。</span>
+                                    <span class="desc">｜ 揪心系情感渲染力神曲</span>
                                 </div>
                             </div>
                         </label>
@@ -376,9 +378,9 @@
                             <input type="checkbox" name="selectedSong" value="know 知道" onchange="checkMaxSelection(this)">
                             <div class="song-details">
                                 <div class="title-wrapper">
-                                    <span class="title">know 知道</span>
+                                    <span class="title">知道</span>
                                     <span class="vote-badge" id="count-know_知道">讀取中...</span>
-                                    <span class="desc">｜ 內斂深情，默默守候的雋永經典。</span>
+                                    <span class="desc">｜ 內斂深情的雋永經典</span>
                                 </div>
                             </div>
                         </label>
@@ -392,7 +394,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">不藥而癒</span>
                                     <span class="vote-badge" id="count-不藥而癒">讀取中...</span>
-                                    <span class="desc">｜ 標準療傷情歌，陪伴無數人度過失戀期。</span>
+                                    <span class="desc">｜ 陪伴療傷的標準情歌</span>
                                 </div>
                             </div>
                         </label>
@@ -406,7 +408,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">仨人</span>
                                     <span class="vote-badge" id="count-仨人">讀取中...</span>
-                                    <span class="desc">｜ 最具代表性的閨蜜友誼之歌。</span>
+                                    <span class="desc">｜ 最具代表性的閨蜜之歌</span>
                                 </div>
                             </div>
                         </label>
@@ -420,7 +422,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">每一天都不同</span>
                                     <span class="vote-badge" id="count-每一天都不同">讀取中...</span>
-                                    <span class="desc">｜ 充滿正能量的勵志歌曲，給予生活滿滿勇氣。</span>
+                                    <span class="desc">｜ 給予滿滿勇氣的勵志歌</span>
                                 </div>
                             </div>
                         </label>
@@ -434,7 +436,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">我們都能幸福著</span>
                                     <span class="vote-badge" id="count-我們都能幸福著">讀取中...</span>
-                                    <span class="desc">｜ 成熟釋懷的愛情觀，給彼此最好的祝福。</span>
+                                    <span class="desc">｜ 成熟釋懷的溫柔祝福</span>
                                 </div>
                             </div>
                         </label>
@@ -448,7 +450,7 @@
                                 <div class="title-wrapper">
                                     <span class="title">往未來飛的客機</span>
                                     <span class="vote-badge" id="count-往未來飛的客機">讀取中...</span>
-                                    <span class="desc">｜ 致 那些即將啟航的夢想，畢業經典曲。</span>
+                                    <span class="desc">｜ 致夢想啟航的畢業經典</span>
                                 </div>
                             </div>
                         </label>
