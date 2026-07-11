@@ -337,7 +337,6 @@
     <img src="banner.png" alt="2026馬光家庭日主視覺" class="main-banner">
 
     <div class="form-content">
-        <!-- 💡 標題優化：更新為專屬的港灣音樂會主題文宣 -->
         <div class="header">
             <h1>⚓  港灣音樂會｜馬光人專屬點歌許願池</h1>
             <p>選出你最想聽的郭靜經典神曲，一起在港灣留下屬於馬光人的美好回憶💙</p>
@@ -354,7 +353,6 @@
 
         <form id="voteForm" onsubmit="submitForm(event)">
             <div class="form-group">
-                <!-- 💡 欄位修改：更新為您指定的「🎧 點歌人（暱稱）」欄位名稱 -->
                 <label for="nickname">🎧 點歌人</label>
                 <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
             </div>
@@ -416,6 +414,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">我不想忘記你</span>
+                                    <!-- 💡 核心 Bug 修正：已將 count-快不想忘記你 修正為 count-我不想忘記你，恢復資料連動機制 -->
                                     <span class="vote-badge" id="count-我不想忘記你">讀取中...</span>
                                     <span class="desc">｜ 最溫柔的郭式純愛起點</span>
                                 </div>
@@ -467,7 +466,7 @@
                     <!-- 6. know 知道 -->
                     <div class="song-item" data-song="know 知道" id="item-know_知道">
                         <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="know 知道" id="chk-know_知道" onchange="checkMaxSelection(this)">
+                            <input type="checkbox" name="selectedSong" value="know 知道" id="chk-know_ Grandma" onchange="checkMaxSelection(this)">
                         </div>
                         <label class="song-info" for="chk-know_知道">
                             <div class="song-info-block">
@@ -700,7 +699,7 @@
         .catch(error => alert("連線伺服器異常，請重新再試！"))
         .finally(() => {
             submitBtn.disabled = false;
-            submitBtn.innerText = "送出點歌許願";
+            submitBtn.innerText = "送出點歌真願";
         });
     }
 </script>
