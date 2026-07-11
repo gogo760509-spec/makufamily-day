@@ -18,7 +18,7 @@
             background: linear-gradient(180deg, var(--background-color) 0%, #e2e8f0 100%);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -42,26 +42,30 @@
         }
 
         .form-content {
-            padding: 30px;
+            padding: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .form-content { padding: 30px; }
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             border-bottom: 2px solid #e2e8f0;
             padding-bottom: 20px;
         }
 
         .header h1 {
             color: var(--primary-color);
-            font-size: 24px;
+            font-size: 22px;
             margin: 0 0 10px 0;
         }
 
         .header p {
             color: #718096;
             margin: 0;
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.6;
         }
 
@@ -76,12 +80,12 @@
         }
 
         .singer-avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-right: 15px;
+            margin-right: 12px;
             border: 2px solid white;
             flex-shrink: 0;
         }
@@ -98,14 +102,14 @@
         }
 
         .singer-info-text .name {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: var(--primary-color);
             margin: 0 0 4px 0;
         }
 
         .singer-info-text .bio {
-            font-size: 13px;
+            font-size: 12px;
             color: #4a5568;
             margin: 0;
             line-height: 1.4;
@@ -129,89 +133,83 @@
             border: 1px dashed #fbd38d;
             padding: 6px 10px;
             border-radius: 6px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: normal;
             display: block;
+            line-height: 1.4;
         }
 
         .song-list {
             border: 1px solid #cbd5e0;
             border-radius: 8px;
-            padding: 10px;
+            padding: 6px;
             background-color: #f7fafc;
-            max-height: 450px;
+            max-height: 480px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
+            gap: 6px;
         }
 
+        /* 💡 核心優化：大外層強制水平置中，限制整體高度 */
         .song-item {
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 12px;
-            border-bottom: 1px solid #edf2f7;
-            transition: transform 0.4s ease;
-            background-color: transparent;
-            overflow: hidden;
+            padding: 10px 8px;
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            transition: transform 0.3s ease, box-shadow 0.2s ease;
+            position: relative;
         }
 
-        /* 長條圖背景虛擬元素 */
-        .song-item::before {
+        .song-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        /* 💡 核心優化：左側勾選框單獨成立一欄，永遠垂直置中 */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 40px;
+            flex-shrink: 0;
+            border-right: 1px solid #edf2f7;
+            margin-right: 10px;
+        }
+
+        .checkbox-wrapper input {
+            transform: scale(1.3);
+            margin: 0;
+            cursor: pointer;
+        }
+
+        /* 💡 核心優化：中間文字大區塊，長條圖直接改綁在這裡，與勾選框完全物理切離 */
+        .song-info-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2px 4px;
+            min-width: 0;
+            position: relative;
+            align-self: stretch; /* 撐滿上下高度讓背景長條圖填滿 */
+        }
+
+        /* 新型長條圖渲染層 */
+        .song-info-block::before {
             content: "";
             position: absolute;
             left: 0;
             top: 0;
             bottom: 0;
             width: var(--progress, 0%);
-            background-color: rgba(49, 151, 149, 0.08);
-            transition: width 0.8s ease-in-out;
+            background-color: rgba(49, 151, 149, 0.08); /* 淡綠色計票條 */
+            border-radius: 4px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
-            pointer-events: none;
-        }
-
-        .song-item:last-child {
-            border-bottom: none;
-        }
-
-        /* 💡 核心優化：給予硬性寬度與最高優先權，打破 label 標籤的預設塌陷行為 */
-        .song-info {
-            display: flex !important;
-            align-items: center !important; 
-            flex: 1;
-            width: 100%;
-            cursor: pointer;
-            z-index: 1;
-            margin-right: 10px;
-            min-width: 0;
-        }
-
-        /* 💡 核心優化：加入自動邊距對齊，強迫勾選框在任何情況下都絕對水平垂直置中 */
-        .checkbox-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            margin-right: 12px;
-            margin-top: auto !important;
-            margin-bottom: auto !important;
-            flex-shrink: 0;
-        }
-
-        .checkbox-wrapper input {
-            transform: scale(1.2);
-            margin: 0;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .song-info-block {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            min-width: 0;
         }
 
         .title-wrapper {
@@ -219,13 +217,14 @@
             align-items: center;
             gap: 6px;
             flex-wrap: wrap; 
+            z-index: 1; /* 確保文字在長條圖上方 */
         }
 
         .song-info-block .title {
             font-weight: bold;
             font-size: 15px;
             color: var(--text-color);
-            line-height: 1.2;
+            line-height: 1.4;
         }
 
         .vote-badge {
@@ -233,8 +232,8 @@
             color: #c05621;
             font-size: 11px;
             font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 12px;
+            padding: 1px 6px;
+            border-radius: 10px;
             white-space: nowrap;
         }
 
@@ -242,12 +241,18 @@
             font-size: 11.5px;
             font-weight: normal;
             color: #a0aec0;
-            margin-left: 2px;
-            display: inline-block;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            letter-spacing: 0.2px;
+            line-height: 1.4;
+        }
+
+        /* 💡 核心優化：右側試聽按鈕固定寬度，絕不跑位擠壓 */
+        .btn-play-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 76px;
+            flex-shrink: 0;
+            margin-left: 6px;
         }
 
         .btn-play {
@@ -257,13 +262,14 @@
             border-radius: 20px;
             padding: 5px 12px;
             font-size: 12.5px;
+            font-weight: 500;
             cursor: pointer;
             transition: background-color 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            flex-shrink: 0;
+            gap: 2px;
             z-index: 1;
+            white-space: nowrap;
         }
 
         .btn-play:hover {
@@ -277,7 +283,7 @@
             border: none;
             border-radius: 8px;
             padding: 12px;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
@@ -286,6 +292,15 @@
 
         .btn-submit:hover {
             background-color: #2b6cb0;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 15px;
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -321,12 +336,11 @@
                 
                 <div class="song-list" id="songContainer">
                     
-                    <!-- 1. 下一個天亮 -->
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="下一個天亮" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="下一個天亮" id="chk-下一個天亮" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-下一個天亮">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">下一個天亮</span>
@@ -335,15 +349,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 2. 心牆 -->
                     <div class="song-item" data-song="心牆" id="item-心牆">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="心牆" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="心牆" id="chk-心牆" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-心牆">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">心牆</span>
@@ -352,15 +367,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 3. 我不想忘記你 -->
-                    <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記原">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="我不想忘記你" onchange="checkMaxSelection(this)">
-                            </div>
+                    <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="我不想忘記你" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-我不想忘記你">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">我不想忘記你</span>
@@ -369,15 +385,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/K-xda8e2FLc?t=80" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/K-xda8e2FLc?t=80" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 4. 在樹上唱歌 -->
                     <div class="song-item" data-song="在樹上唱歌" id="item-在樹上唱歌">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="在樹上唱歌" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="在樹上唱歌" id="chk-在樹上唱歌" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-在樹上唱歌">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">在樹上唱歌</span>
@@ -386,15 +403,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/yCq3RLCn2i0?t=63" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/yCq3RLCn2i0?t=63" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 5. 陪著我的時候想著她 -->
                     <div class="song-item" data-song="陪著我的時候想著她" id="item-陪著我的時候想著她">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" id="chk-陪著我的時候想著她" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-陪著我的時候想著她">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">陪著我的時候想著她</span>
@@ -403,15 +421,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/Hn8yhgxpzS4?t=98" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/Hn8yhgxpzS4?t=98" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 6. know 知道 -->
                     <div class="song-item" data-song="know 知道" id="item-know_知道">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="know 知道" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="know 知道" id="chk-know_知道" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-know_知道">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">know 知道</span>
@@ -420,15 +439,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/ROKxPtX-vt8?t=57" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/ROKxPtX-vt8?t=57" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 7. 不藥而癒 -->
                     <div class="song-item" data-song="不藥而癒" id="item-不藥而癒">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="不藥而癒" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="不藥而癒" id="chk-不藥而癒" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-不藥而癒">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">不藥而癒</span>
@@ -437,15 +457,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/DduKGmRCqio?t=61" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/DduKGmRCqio?t=61" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 8. 仨人 -->
                     <div class="song-item" data-song="仨人" id="item-仨人">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="仨人" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="仨人" id="chk-仨人" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-仨人">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">仨人</span>
@@ -454,15 +475,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/L8sEFu9ByaA?t=70" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/L8sEFu9ByaA?t=70" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 9. 每一天都不同 -->
                     <div class="song-item" data-song="每一天都不同" id="item-每一天都不同">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="每一天都不同" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="每一天都不同" id="chk-每一天都不同" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-每一天都不同">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">每一天都不同</span>
@@ -471,15 +493,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/0ZJ5ueYy-j4?t=62" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/0ZJ5ueYy-j4?t=62" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 10. 我們都能幸福著 -->
                     <div class="song-item" data-song="我們都能幸福著" id="item-我們都能幸福著">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="我們都能幸福著" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="我們都能幸福著" id="chk-我們都能幸福著" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-我們都能幸福著">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">我們都能幸福著</span>
@@ -488,15 +511,16 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/nn18FrDexFE?t=76" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/nn18FrDexFE?t=76" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
-                    <!-- 11. 往未來飛的客機 -->
                     <div class="song-item" data-song="往未來飛的客機" id="item-往未來飛的客機">
-                        <label class="song-info">
-                            <div class="checkbox-wrapper">
-                                <input type="checkbox" name="selectedSong" value="往未來飛的客機" onchange="checkMaxSelection(this)">
-                            </div>
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="往未來飛的客機" id="chk-往未來飛的客機" onchange="checkMaxSelection(this)">
+                        </div>
+                        <label class="song-info" for="chk-往未來飛的客機">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">往未來飛的客機</span>
@@ -505,7 +529,9 @@
                                 </div>
                             </div>
                         </label>
-                        <a href="https://youtu.be/NwpkhhLobTs?t=67" target="_blank" class="btn-play">▶ 試聽</a>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/NwpkhhLobTs?t=67" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
                     </div>
 
                 </div>
