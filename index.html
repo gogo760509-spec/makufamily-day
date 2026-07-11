@@ -150,7 +150,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 12px; /* 增加上下間距讓單行視覺更舒適 */
+            padding: 16px 12px;
             border-bottom: 1px solid #edf2f7;
             transition: transform 0.4s ease;
             background-color: transparent;
@@ -177,7 +177,7 @@
 
         .song-info {
             display: flex;
-            align-items: center; /* 單行結構下改為垂直置中對齊 */
+            align-items: center; /* 💡 核心修正：將整個包裹容器改為垂直置中對齊 */
             flex: 1;
             cursor: pointer;
             z-index: 1;
@@ -186,6 +186,7 @@
 
         .song-info input {
             margin-right: 12px;
+            margin-top: 0; /* 💡 核心修正：重置上邊距，交由 flex 引擎自動置中 */
             transform: scale(1.2);
             flex-shrink: 0;
         }
@@ -196,7 +197,6 @@
             width: 100%;
         }
 
-        /* 💡 核心優化：橫向彈性排版，允許在手機板寬度不足時自動換行 */
         .title-wrapper {
             display: flex;
             align-items: center;
@@ -220,7 +220,6 @@
             white-space: nowrap;
         }
 
-        /* 💡 核心優化：歌曲簡介樣式，字體縮小、改為細體灰色，並設定左邊距推開 */
         .title-wrapper .desc {
             font-size: 13px;
             font-weight: normal;
@@ -308,7 +307,6 @@
                                 <div class="title-wrapper">
                                     <span class="title">下一個天亮</span>
                                     <span class="vote-badge" id="count-下一個天亮">讀取中...</span>
-                                    <!-- 💡 結構修正：簡介直接內嵌在同一行 -->
                                     <span class="desc">｜ 國民級療癒神曲，大合唱必備！</span>
                                 </div>
                             </div>
@@ -332,7 +330,7 @@
                     </div>
 
                     <!-- 3. 我不想忘記你 -->
-                    <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記ні">
+                    <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="我不想忘記你" onchange="checkMaxSelection(this)">
                             <div class="song-details">
@@ -474,12 +472,12 @@
                 <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">送出點歌許願</button>
+            <button type="submit" class="btn-submit">送出點歌狂願</button>
         </form>
     </div>
 </div>
 
-<script>
+<script {
     const gasWebUrl = "https://script.google.com/macros/s/AKfycbzbfBxctNIrO_GkZY557I4ZFwPUubjmkQIYpQ2ybOQ7zKINvoI2Anmvts-aiYSYsoVG_g/exec";
     let currentVotesData = {};
 
