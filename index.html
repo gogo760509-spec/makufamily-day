@@ -60,6 +60,7 @@
             color: var(--primary-color);
             font-size: 22px;
             margin: 0 0 10px 0;
+            line-height: 1.4;
         }
 
         .header p {
@@ -336,9 +337,10 @@
     <img src="banner.png" alt="2026馬光家庭日主視覺" class="main-banner">
 
     <div class="form-content">
+        <!-- 💡 標題優化：更新為專屬的港灣音樂會主題文宣 -->
         <div class="header">
-            <h1>【2026馬光家庭日】純愛天后「郭靜」</h1>
-            <p>海岸音樂會：同仁專屬點歌許願池！<br>期待在海風與歌聲陪伴下，一同度過美好時光。請選出您最想聽的神曲！</p>
+            <h1>⚓  港灣音樂會｜馬光人專屬點歌許願池</h1>
+            <p>選出你最想聽的郭靜經典神曲，一起在港灣留下屬於馬光人的美好回憶💙</p>
         </div>
 
         <div class="singer-card">
@@ -352,14 +354,14 @@
 
         <form id="voteForm" onsubmit="submitForm(event)">
             <div class="form-group">
-                <label for="nickname">同仁暱稱</label>
+                <!-- 💡 欄位修改：更新為您指定的「🎧 點歌人（暱稱）」欄位名稱 -->
+                <label for="nickname">🎧 點歌人（暱稱）</label>
                 <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
             </div>
 
             <div class="form-group">
                 <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
                 
-                <!-- 💡 結構更新：導入您修改後的全新兩行溫馨提醒內容 -->
                 <div class="notice-badge">
                     <span class="notice-line">🎤 每次投票可複選 3 首歌曲， 快把最愛的神曲推上排行榜！💖</span>
                     <span class="notice-line">🔥 票數即時更新，隨時掌握愛歌衝到第幾名！</span>
@@ -681,7 +683,7 @@
         .then(response => response.json())
         .then(data => {
             if(data.result === "success") {
-                alert(`🎉 投票成功！您的願望已送入許願池囉！\n\n同仁暱稱：${nickname}\n複選歌曲：${combinedSongs}`);
+                alert(`🎉 投票成功！您的願望已送入許願池囉！\n\n點歌人暱稱：${nickname}\n複選歌曲：${combinedSongs}`);
                 
                 checkedBoxes.forEach(box => {
                     if (currentVotesData.hasOwnProperty(box.value)) {
