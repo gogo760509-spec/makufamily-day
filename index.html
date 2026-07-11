@@ -161,7 +161,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* 常駐型粉藍色滾動軸樣式 */
+        /* 手機常駐滾動軸樣式 */
         .song-list::-webkit-scrollbar {
             width: 8px;
             display: block;
@@ -353,7 +353,7 @@
 
         <form id="voteForm" onsubmit="submitForm(event)">
             <div class="form-group">
-                <label for="nickname">🎧 點歌人（暱稱）</label>
+                <label for="nickname">🎧 點歌人</label>
                 <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
             </div>
 
@@ -375,7 +375,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">下一個天亮</span>
-                                    <span class="vote-badge" id="count-下一個天亮">讀取中...</span>
+                                    <span class="vote-badge" id="count-下一個天亮">0 票</span>
                                     <span class="desc">｜ 國民級療癒大合唱神曲</span>
                                 </div>
                             </div>
@@ -393,7 +393,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">心牆</span>
-                                    <span class="vote-badge" id="count-心牆">讀取中...</span>
+                                    <span class="vote-badge" id="count-心牆">0 票</span>
                                     <span class="desc">｜ 經典偶像劇必點片尾曲</span>
                                 </div>
                             </div>
@@ -411,7 +411,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">我不想忘記你</span>
-                                    <span class="vote-badge" id="count-我不想忘記你">讀取中...</span>
+                                    <span class="vote-badge" id="count-我不想忘記你">0 票</span>
                                     <span class="desc">｜ 最溫柔的郭式純愛起點</span>
                                 </div>
                             </div>
@@ -425,11 +425,11 @@
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="在樹上唱歌" id="chk-在樹上唱歌" onchange="checkMaxSelection(this)">
                         </div>
-                        <label class="song-info" for="chk-在樹上唱歌">
+                        <label class="song-info" for="chk-搶樹上唱歌">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">在樹上唱歌</span>
-                                    <span class="vote-badge" id="count-在樹上唱歌">讀取中...</span>
+                                    <span class="vote-badge" id="count-在樹上唱歌">0 票</span>
                                     <span class="desc">｜ 金曲獎輕快俏皮代表作</span>
                                 </div>
                             </div>
@@ -447,7 +447,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">陪著我的時候想著她</span>
-                                    <span class="vote-badge" id="count-陪著我的時候想著她">讀取中...</span>
+                                    <span class="vote-badge" id="count-陪著我的時候想著她">0 票</span>
                                     <span class="desc">｜ 揪心系情感渲染力神曲</span>
                                 </div>
                             </div>
@@ -465,7 +465,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">知道</span>
-                                    <span class="vote-badge" id="count-知道">讀取中...</span>
+                                    <span class="vote-badge" id="count-知道">0 票</span>
                                     <span class="desc">｜ 內斂深情的雋永經典</span>
                                 </div>
                             </div>
@@ -483,7 +483,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">不藥而癒</span>
-                                    <span class="vote-badge" id="count-不藥而癒">讀取中...</span>
+                                    <span class="vote-badge" id="count-不藥而癒">0 票</span>
                                     <span class="desc">｜ 陪伴療傷的標準情歌</span>
                                 </div>
                             </div>
@@ -501,7 +501,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">仨人</span>
-                                    <span class="vote-badge" id="count-仨人">讀取中...</span>
+                                    <span class="vote-badge" id="count-仨人">0 票</span>
                                     <span class="desc">｜ 最具代表性的閨蜜之歌</span>
                                 </div>
                             </div>
@@ -519,7 +519,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">每一天都不同</span>
-                                    <span class="vote-badge" id="count-每一天都不同">讀取中...</span>
+                                    <span class="vote-badge" id="count-每一天都不同">0 票</span>
                                     <span class="desc">｜ 給予滿滿勇氣的勵志歌</span>
                                 </div>
                             </div>
@@ -537,7 +537,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">我們都能幸福著</span>
-                                    <span class="vote-badge" id="count-我們都能幸福著">讀取中...</span>
+                                    <span class="vote-badge" id="count-我們都能幸福著">0 票</span>
                                     <span class="desc">｜ 成熟釋懷的溫柔祝福</span>
                                 </div>
                             </div>
@@ -555,7 +555,7 @@
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">往未來飛的客機</span>
-                                    <span class="vote-badge" id="count-往未來飛的客機">讀取中...</span>
+                                    <span class="vote-badge" id="count-往未來飛的客機">0 票</span>
                                     <span class="desc">｜ 致夢想啟航的畢業經典</span>
                                 </div>
                             </div>
@@ -573,7 +573,7 @@
                 <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">送出點歌許願</button>
+            <button type="submit" class="btn-submit">送出點歌決願</button>
         </form>
     </div>
 </div>
@@ -585,6 +585,7 @@
     window.addEventListener('DOMContentLoaded', fetchVotes);
 
     function fetchVotes() {
+        // 💡 加上強制重新整理參數，確保每一次開啟都跟 Google 試算表拿最新活數據
         fetch(`${gasWebUrl}?_=${Date.now()}`)
         .then(response => response.json())
         .then(data => {
