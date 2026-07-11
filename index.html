@@ -177,7 +177,7 @@
 
         .song-info {
             display: flex;
-            align-items: center; /* 💡 核心修正：將整個包裹容器改為垂直置中對齊 */
+            align-items: center; /* 💡 確保容器內所有元素垂直居中 */
             flex: 1;
             cursor: pointer;
             z-index: 1;
@@ -186,9 +186,11 @@
 
         .song-info input {
             margin-right: 12px;
-            margin-top: 0; /* 💡 核心修正：重置上邊距，交由 flex 引擎自動置中 */
+            margin-top: 0;
+            margin-bottom: 0;
             transform: scale(1.2);
             flex-shrink: 0;
+            align-self: center; /* 💡 強制勾選框在垂直軸上絕對置中 */
         }
 
         .song-details {
@@ -299,7 +301,6 @@
                 
                 <div class="song-list" id="songContainer">
                     
-                    <!-- 1. 下一個天亮 -->
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="下一個天亮" onchange="checkMaxSelection(this)">
@@ -314,7 +315,6 @@
                         <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 2. 心牆 -->
                     <div class="song-item" data-song="心牆" id="item-心牆">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="心牆" onchange="checkMaxSelection(this)">
@@ -329,7 +329,6 @@
                         <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 3. 我不想忘記你 -->
                     <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="我不想忘記你" onchange="checkMaxSelection(this)">
@@ -344,7 +343,6 @@
                         <a href="https://youtu.be/K-xda8e2FLc?t=80" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 4. 在樹上唱歌 -->
                     <div class="song-item" data-song="在樹上唱歌" id="item-在樹上唱歌">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="在樹上唱歌" onchange="checkMaxSelection(this)">
@@ -359,7 +357,6 @@
                         <a href="https://youtu.be/yCq3RLCn2i0?t=63" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 5. 陪著我的時候想著她 -->
                     <div class="song-item" data-song="陪著我的時候想著她" id="item-陪著我的時候想著她">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" onchange="checkMaxSelection(this)">
@@ -374,7 +371,6 @@
                         <a href="https://youtu.be/Hn8yhgxpzS4?t=98" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 6. know 知道 -->
                     <div class="song-item" data-song="know 知道" id="item-know_知道">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="know 知道" onchange="checkMaxSelection(this)">
@@ -389,7 +385,6 @@
                         <a href="https://youtu.be/ROKxPtX-vt8?t=57" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 7. 不藥而癒 -->
                     <div class="song-item" data-song="不藥而癒" id="item-不藥而癒">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="不藥而癒" onchange="checkMaxSelection(this)">
@@ -404,7 +399,6 @@
                         <a href="https://youtu.be/DduKGmRCqio?t=61" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 8. 仨人 -->
                     <div class="song-item" data-song="仨人" id="item-仨人">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="仨人" onchange="checkMaxSelection(this)">
@@ -419,7 +413,6 @@
                         <a href="https://youtu.be/L8sEFu9ByaA?t=70" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 9. 每一天都不同 -->
                     <div class="song-item" data-song="每一天都不同" id="item-每一天都不同">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="每一天都不同" onchange="checkMaxSelection(this)">
@@ -434,7 +427,6 @@
                         <a href="https://youtu.be/0ZJ5ueYy-j4?t=62" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 10. 我們都能幸福著 -->
                     <div class="song-item" data-song="我們都能幸福著" id="item-我們都能幸福著">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="我們都能幸福著" onchange="checkMaxSelection(this)">
@@ -449,7 +441,6 @@
                         <a href="https://youtu.be/nn18FrDexFE?t=76" target="_blank" class="btn-play">▶ 試聽</a>
                     </div>
 
-                    <!-- 11. 往未來飛的客機 -->
                     <div class="song-item" data-song="往未來飛的客機" id="item-往未來飛的客機">
                         <label class="song-info">
                             <input type="checkbox" name="selectedSong" value="往未來飛的客機" onchange="checkMaxSelection(this)">
@@ -472,12 +463,12 @@
                 <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">送出點歌狂願</button>
+            <button type="submit" class="btn-submit">送出點歌許願</button>
         </form>
     </div>
 </div>
 
-<script {
+<script>
     const gasWebUrl = "https://script.google.com/macros/s/AKfycbzbfBxctNIrO_GkZY557I4ZFwPUubjmkQIYpQ2ybOQ7zKINvoI2Anmvts-aiYSYsoVG_g/exec";
     let currentVotesData = {};
 
