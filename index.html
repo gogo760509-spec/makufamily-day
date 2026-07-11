@@ -152,32 +152,29 @@
             border-radius: 8px;
             padding: 6px;
             background-color: #f7fafc;
-            /* 💡 核心優化：高度微調為 440px，讓底部歌曲自然被切掉一半，提示還有內容 */
             max-height: 440px; 
-            overflow-y: scroll; /* 強制開啟垂直滾動軌道 */
+            overflow-y: scroll;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            -webkit-overflow-scrolling: touch; /* 讓手機版滾動有流暢的滑行阻尼感 */
+            -webkit-overflow-scrolling: touch;
         }
 
-        /* 💡 核心優化：針對手機與電腦端，客製化永遠常駐顯示的精美粉藍色滾動軸 */
+        /* 手機與電腦端常駐型粉藍色滾動軸 */
         .song-list::-webkit-scrollbar {
-            width: 8px; /* 設定適中且明顯的寬度 */
+            width: 8px;
             display: block;
         }
 
-        /* 滾動軸軌道背景 */
         .song-list::-webkit-scrollbar-track {
             background: #edf2f7;
             border-radius: 4px;
         }
 
-        /* 滾動軸拉條主體 */
         .song-list::-webkit-scrollbar-thumb {
-            background-color: #38b2ac; /* 改用粉藍色，呼叫整體視覺 */
+            background-color: #38b2ac;
             border-radius: 4px;
-            border: 1px solid #edf2f7; /* 預留邊界線增加立體感 */
+            border: 1px solid #edf2f7;
         }
 
         .song-list::-webkit-scrollbar-thumb:hover {
@@ -228,6 +225,7 @@
             align-self: stretch;
         }
 
+        /* 亮麗透明粉藍色計票長條圖 */
         .song-info-block::before {
             content: "";
             position: absolute;
@@ -235,7 +233,7 @@
             top: 0;
             bottom: 0;
             width: var(--progress, 0%);
-            background-color: rgba(56, 178, 172, 0.22); /* 亮麗透明粉藍色計票長條圖 */
+            background-color: rgba(56, 178, 172, 0.22);
             border-radius: 4px;
             transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 0;
@@ -361,10 +359,10 @@
             <div class="form-group">
                 <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
                 
+                <!-- 💡 結構更新：導入您修改後的全新兩行溫馨提醒內容 -->
                 <div class="notice-badge">
-                    <span class="notice-line">🎤 每次投票可複選 3 首歌曲</span>
-                    <span class="notice-line">💖 不限帳號皆可投票，一起把最想聽的神曲推上排行榜！</span>
-                    <span class="notice-line">🔥 票數即時更新，排名隨時變動，快來看看你的愛歌衝到第幾名！</span>
+                    <span class="notice-line">🎤 每次投票可複選 3 首歌曲， 快把最愛的神曲推上排行榜！💖</span>
+                    <span class="notice-line">🔥 票數即時更新，隨時掌握愛歌衝到第幾名！</span>
                 </div>
                 
                 <div class="song-list" id="songContainer">
@@ -700,7 +698,7 @@
         .catch(error => alert("連線伺服器異常，請重新再試！"))
         .finally(() => {
             submitBtn.disabled = false;
-            submitBtn.innerText = "送出點歌幕願";
+            submitBtn.innerText = "送出點歌許願";
         });
     }
 </script>
