@@ -127,7 +127,7 @@
             color: var(--text-color);
         }
 
-        /* 💡 截止告示樣式 */
+        /* 截止告示樣式 */
         .closed-notice {
             background-color: #fff5f5;
             color: #c53030;
@@ -339,7 +339,7 @@
         </div>
 
         <div id="closedNotice" class="closed-notice">
-            ⏰ 許願點歌活動已順利截止！感謝同仁熱烈參與，請關注下方最終開票榜單！
+            ⏰ 許願點歌活動已順利截止！感謝同仁熱烈參與！
         </div>
 
         <form id="voteForm" onsubmit="event.preventDefault();">
@@ -349,9 +349,51 @@
             </div>
 
             <div class="form-group">
-                <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
+                <label>目前投票狀態（右側 ▶ 可試聽經典副歌 MV）</label>
                 
                 <div class="song-list" id="songContainer">
                     
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
-                        <div
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="下一個天亮" id="chk-下一個天亮" disabled>
+                        </div>
+                        <label class="song-info" for="chk-下一個天亮">
+                            <div class="song-info-block">
+                                <div class="title-wrapper">
+                                    <span class="title">下一個天亮</span>
+                                    <span class="vote-badge" id="count-下一個天亮">讀取中...</span>
+                                    <span class="desc">｜ 國民級療癒大合唱神曲</span>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
+                    </div>
+
+                    <div class="song-item" data-song="心牆" id="item-心牆">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="心牆" id="chk-心牆" disabled>
+                        </div>
+                        <label class="song-info" for="chk-心牆">
+                            <div class="song-info-block">
+                                <div class="title-wrapper">
+                                    <span class="title">心牆</span>
+                                    <span class="vote-badge" id="count-心牆">讀取中...</span>
+                                    <span class="desc">｜ 經典偶像劇必點片尾曲</span>
+                                </div>
+                            </div>
+                        </label>
+                        <div class="btn-play-wrapper">
+                            <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
+                        </div>
+                    </div>
+
+                    <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" name="selectedSong" value="我不想忘記你" id="chk-我不想忘記你" disabled>
+                        </div>
+                        <label class="song-info" for="chk-我不想忘記你">
+                            <div class="song-info-block">
+                                <div class="title-wrapper">
+                                    <span class="title">我不想忘記你</span>
