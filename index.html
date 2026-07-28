@@ -127,39 +127,18 @@
             color: var(--text-color);
         }
 
-        .notice-badge {
-            font-size: 12.5px;
-            color: #dd6b20;
-            background-color: #fffaf0;
-            border: 1px dashed #fbd38d;
-            padding: 10px 14px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            font-weight: normal;
-            display: block;
-            line-height: 1.6;
-        }
-
-        .notice-line {
-            display: block;
-            margin-bottom: 4px;
-        }
-        .notice-line:last-child {
-            margin-bottom: 0;
-        }
-
-        /* 💡 截止公告樣式 */
+        /* 💡 截止告示樣式 */
         .closed-notice {
             background-color: #fff5f5;
             color: #c53030;
             border: 1px solid #feb2b2;
-            padding: 12px;
+            padding: 12px 14px;
             border-radius: 8px;
             text-align: center;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             font-size: 14px;
-            display: none;
+            line-height: 1.5;
         }
 
         .song-list {
@@ -208,10 +187,6 @@
             position: relative;
         }
 
-        .song-item:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-
         .checkbox-wrapper {
             display: flex;
             align-items: center;
@@ -226,7 +201,7 @@
         .checkbox-wrapper input {
             transform: scale(1.3);
             margin: 0;
-            cursor: pointer;
+            cursor: not-allowed;
         }
 
         .song-info-block {
@@ -319,27 +294,16 @@
 
         .btn-submit {
             width: 100%;
-            background-color: var(--primary-color);
+            background-color: #a0aec0 !important;
             color: white;
             border: none;
             border-radius: 8px;
             padding: 12px;
             font-size: 17px;
             font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s, opacity 0.2s;
-        }
-
-        .btn-submit:hover:not(:disabled) {
-            background-color: #2b6cb0;
-        }
-
-        /* 💡 按鈕禁用樣式 */
-        .btn-submit:disabled {
-            background-color: #a0aec0 !important;
             cursor: not-allowed;
-            opacity: 0.8;
+            margin-top: 10px;
+            opacity: 0.85;
         }
 
         .form-control {
@@ -349,6 +313,8 @@
             border-radius: 8px;
             font-size: 15px;
             box-sizing: border-box;
+            background-color: #edf2f7;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -376,389 +342,16 @@
             ⏰ 許願點歌活動已順利截止！感謝同仁熱烈參與，請關注下方最終開票榜單！
         </div>
 
-        <form id="voteForm" onsubmit="submitForm(event)">
+        <form id="voteForm" onsubmit="event.preventDefault();">
             <div class="form-group">
                 <label for="nickname">🎧 點歌人</label>
-                <input type="text" id="nickname" class="form-control" placeholder="請輸入您的暱稱" required>
+                <input type="text" id="nickname" class="form-control" placeholder="許願已截止" disabled>
             </div>
 
             <div class="form-group">
                 <label>專屬點歌神曲（右側 ▶ 可試聽經典副歌 MV）</label>
                 
-                <div class="notice-badge">
-                    <span class="notice-line">🎤 每次投票可複選 3 首歌曲， 快把最愛的神曲推上排行榜！💖</span>
-                    <span class="notice-line">🔥 票數即時更新，隨時掌握愛歌衝到第幾名！</span>
-                </div>
-                
                 <div class="song-list" id="songContainer">
                     
                     <div class="song-item" data-song="下一個天亮" id="item-下一個天亮">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="下一個天亮" id="chk-下一個天亮" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-下一個天亮">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">下一個天亮</span>
-                                    <span class="vote-badge" id="count-下一個天亮">0 票</span>
-                                    <span class="desc">｜ 國民級療癒大合唱神曲</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/AEUmLttrY5s?t=117" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="心牆" id="item-心牆">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="心牆" id="chk-心牆" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-心牆">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">心牆</span>
-                                    <span class="vote-badge" id="count-心牆">0 票</span>
-                                    <span class="desc">｜ 經典偶像劇必點片尾曲</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/VhCRokYVF1I?t=65" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="我不想忘記你" id="item-我不想忘記你">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="我不想忘記你" id="chk-我不想忘記你" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-我不想忘記你">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">我不想忘記你</span>
-                                    <span class="vote-badge" id="count-我不想忘記你">0 票</span>
-                                    <span class="desc">｜ 最溫柔的郭式純愛起點</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/K-xda8e2FLc?t=80" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="在樹上唱歌" id="item-在樹上唱歌">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="在樹上唱歌" id="chk-在樹上唱歌" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-在樹上唱歌">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">在樹上唱歌</span>
-                                    <span class="vote-badge" id="count-在樹上唱歌">0 票</span>
-                                    <span class="desc">｜ 金曲獎輕快俏皮代表作</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/yCq3RLCn2i0?t=63" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="陪著我的時候想著她" id="item-陪著我的時候想著她">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="陪著我的時候想著她" id="chk-陪著我的時候想著她" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-陪著我的時候想著她">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">陪著我的時候想著她</span>
-                                    <span class="vote-badge" id="count-陪著我的時候想著她">0 票</span>
-                                    <span class="desc">｜ 揪心系情感渲染力神曲</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/Hn8yhgxpzS4?t=98" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="知道" id="item-知道">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="知道" id="chk-知道" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-知道">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">知道</span>
-                                    <span class="vote-badge" id="count-知道">0 票</span>
-                                    <span class="desc">｜ 內斂深情的雋永經典</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/ROKxPtX-vt8?t=57" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="不藥而癒" id="item-不藥而癒">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="不藥而癒" id="chk-不藥而癒" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-不藥而癒">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">不藥而癒</span>
-                                    <span class="vote-badge" id="count-不藥而癒">0 票</span>
-                                    <span class="desc">｜ 陪伴療傷的標準情歌</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/DduKGmRCqio?t=61" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="仨人" id="item-仨人">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="仨人" id="chk-仨人" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-仨人">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">仨人</span>
-                                    <span class="vote-badge" id="count-仨人">0 票</span>
-                                    <span class="desc">｜ 最具代表性的閨蜜之歌</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/L8sEFu9ByaA?t=70" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="每一天都不同" id="item-每一天都不同">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="每一天都不同" id="chk-每一天都不同" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-每一天都不同">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">每一天都不同</span>
-                                    <span class="vote-badge" id="count-每一天都不同">0 票</span>
-                                    <span class="desc">｜ 給予滿滿勇氣的勵志歌</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/0ZJ5ueYy-j4?t=62" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="我們都能幸福著" id="item-我們都能幸福著">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="我們都能幸福著" id="chk-我們都能幸福著" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-我們都能幸福著">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">我們都能幸福著</span>
-                                    <span class="vote-badge" id="count-我們都能幸福著">0 票</span>
-                                    <span class="desc">｜ 成熟釋懷的溫柔祝福</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/nn18FrDexFE?t=76" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                    <div class="song-item" data-song="往未來飛的客機" id="item-往未來飛的客機">
-                        <div class="checkbox-wrapper">
-                            <input type="checkbox" name="selectedSong" value="往未來飛的客機" id="chk-往未來飛的客機" onchange="checkMaxSelection(this)">
-                        </div>
-                        <label class="song-info" for="chk-往未來飛的客機">
-                            <div class="song-info-block">
-                                <div class="title-wrapper">
-                                    <span class="title">往未來飛的客機</span>
-                                    <span class="vote-badge" id="count-往未來飛的客機">0 票</span>
-                                    <span class="desc">｜ 致夢想啟航的畢業經典</span>
-                                </div>
-                            </div>
-                        </label>
-                        <div class="btn-play-wrapper">
-                            <a href="https://youtu.be/NwpkhhLobTs?t=67" target="_blank" class="btn-play">▶ 試聽</a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="message">許願池留言 / 想對郭靜說的話</label>
-                <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
-            </div>
-
-            <button type="submit" id="submitBtn" class="btn-submit">送出點歌許願</button>
-        </form>
-    </div>
-</div>
-
-<script>
-    const gasWebUrl = "https://script.google.com/macros/s/AKfycbzbfBxctNIrO_GkZY557I4ZFwPUubjmkQIYpQ2ybOQ7zKINvoI2Anmvts-aiYSYsoVG_g/exec";
-    let currentVotesData = {};
-
-    /* 💡 設定活動截止時間：請輸入目標日期的時間字串 (格式：YYYY-MM-DDTHH:MM:SS) */
-    const deadline = new Date("2026-07-27T23:59:59"); 
-
-    window.addEventListener('DOMContentLoaded', () => {
-        checkDeadlineStatus();
-        fetchVotes();
-    });
-
-    /* 💡 自動檢測是否超過截止時間 */
-    function checkDeadlineStatus() {
-        const now = new Date();
-        if (now >= deadline) {
-            disableVoting();
-        }
-    }
-
-    /* 💡 執行關閉投票機制 */
-    function disableVoting() {
-        // 1. 顯示截止紅色告示
-        const notice = document.getElementById('closedNotice');
-        if (notice) notice.style.display = 'block';
-
-        // 2. 禁用所有輸入框與選票格
-        document.getElementById('nickname').disabled = true;
-        document.getElementById('message').disabled = true;
-        
-        const checkboxes = document.querySelectorAll('input[name="selectedSong"]');
-        checkboxes.forEach(box => box.disabled = true);
-
-        // 3. 修改按鈕狀態
-        const submitBtn = document.getElementById('submitBtn');
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerText = "🔒 許願已截止，感謝參與！";
-        }
-    }
-
-    function fetchVotes() {
-        fetch(`${gasWebUrl}?_=${Date.now()}`)
-        .then(response => response.json())
-        .then(data => {
-            if(data.result === "success") {
-                currentVotesData = data.votes;
-                updatePageRanking();
-            }
-        })
-        .catch(error => console.error("計票載入失敗:", error));
-    }
-
-    function updatePageRanking() {
-        let totalVotes = 0;
-        for (const count of Object.values(currentVotesData)) {
-            totalVotes += parseInt(count) || 0;
-        }
-
-        for (const [songName, count] of Object.entries(currentVotesData)) {
-            const formattedName = songName.replace(" ", "_");
-            const badge = document.getElementById(`count-${formattedName}`);
-            const itemRow = document.getElementById(`item-${formattedName}`);
-            
-            if (badge) badge.innerText = `${count} 票`;
-            
-            if (itemRow) {
-                const percentage = totalVotes === 0 ? 0 : Math.round((count / totalVotes) * 100);
-                itemRow.style.setProperty('--progress', `${percentage}%`);
-            }
-        }
-
-        const container = document.getElementById('songContainer');
-        const items = Array.from(container.getElementsByClassName('song-item'));
-
-        items.sort((a, b) => {
-            const nameA = a.getAttribute('data-song');
-            const nameB = b.getAttribute('data-song');
-            const voteA = parseInt(currentVotesData[nameA]) || 0;
-            const voteB = parseInt(currentVotesData[nameB]) || 0;
-            return voteB - voteA;
-        });
-
-        items.forEach(item => container.appendChild(item));
-    }
-
-    function checkMaxSelection(element) {
-        const checkboxes = document.querySelectorAll('input[name="selectedSong"]:checked');
-        if (checkboxes.length > 3) {
-            alert("❌ 每人最多只能勾選 3 首歌曲喔！");
-            element.checked = false; 
-        }
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-
-        // 二次驗證截止時間
-        if (new Date() >= deadline) {
-            alert("⏰ 許願點歌時間已截止囉！");
-            disableVoting();
-            return;
-        }
-
-        const nickname = document.getElementById('nickname').value;
-        const message = document.getElementById('message').value;
-        const submitBtn = document.getElementById('submitBtn');
-
-        const checkedBoxes = document.querySelectorAll('input[name="selectedSong"]:checked');
-        if (checkedBoxes.length === 0) {
-            alert("❌ 請至少選擇 1 首您最期待聽到的歌曲！");
-            return;
-        }
-
-        const selectedSongsArray = [];
-        checkedBoxes.forEach(box => selectedSongsArray.push(box.value));
-        const combinedSongs = selectedSongsArray.join(", ");
-
-        submitBtn.disabled = true;
-        submitBtn.innerText = "正在傳送許願池...";
-
-        const payload = {
-            nickname: nickname,
-            selectedSong: combinedSongs,
-            message: message
-        };
-
-        fetch(gasWebUrl, {
-            method: "POST",
-            body: JSON.stringify(payload)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.result === "success") {
-                alert(`🎉 投票成功！您的願望已送入許願池囉！\n\n點歌人暱稱：${nickname}\n複選歌曲：${combinedSongs}`);
-                
-                checkedBoxes.forEach(box => {
-                    if (currentVotesData.hasOwnProperty(box.value)) {
-                        currentVotesData[box.value]++;
-                    }
-                });
-                updatePageRanking();
-                
-                document.getElementById('voteForm').reset();
-            } else {
-                alert("寫入錯誤: " + data.error);
-            }
-        })
-        .catch(error => alert("連線伺服器異常，請重新再試！"))
-        .finally(() => {
-            if (new Date() < deadline) {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "送出點歌許願";
-            }
-        });
-    }
-</script>
-</body>
-</html>
+                        <div
