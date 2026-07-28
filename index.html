@@ -148,6 +148,20 @@
             margin-bottom: 0;
         }
 
+        /* 💡 截止公告樣式 */
+        .closed-notice {
+            background-color: #fff5f5;
+            color: #c53030;
+            border: 1px solid #feb2b2;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
         .song-list {
             border: 1px solid #cbd5e0;
             border-radius: 8px;
@@ -314,11 +328,18 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, opacity 0.2s;
         }
 
-        .btn-submit:hover {
+        .btn-submit:hover:not(:disabled) {
             background-color: #2b6cb0;
+        }
+
+        /* 💡 按鈕禁用樣式 */
+        .btn-submit:disabled {
+            background-color: #a0aec0 !important;
+            cursor: not-allowed;
+            opacity: 0.8;
         }
 
         .form-control {
@@ -349,6 +370,10 @@
                 <h3 class="name">純愛天后 ｜ 郭靜 Claire</h3>
                 <p class="bio">用最溫柔的純愛系歌聲，陪伴馬光同仁在海風吹拂的港灣畔，合唱出最動人的青春旋律。</p>
             </div>
+        </div>
+
+        <div id="closedNotice" class="closed-notice">
+            ⏰ 許願點歌活動已順利截止！感謝同仁熱烈參與，請關注下方最終開票榜單！
         </div>
 
         <form id="voteForm" onsubmit="submitForm(event)">
@@ -425,7 +450,7 @@
                         <div class="checkbox-wrapper">
                             <input type="checkbox" name="selectedSong" value="在樹上唱歌" id="chk-在樹上唱歌" onchange="checkMaxSelection(this)">
                         </div>
-                        <label class="song-info" for="chk-搶樹上唱歌">
+                        <label class="song-info" for="chk-在樹上唱歌">
                             <div class="song-info-block">
                                 <div class="title-wrapper">
                                     <span class="title">在樹上唱歌</span>
@@ -573,7 +598,7 @@
                 <textarea id="message" class="form-control" rows="4" placeholder="留下你想說的話..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">送出點歌許願</button>
+            <button type="submit" id="submitBtn" class="btn-submit">送出點歌許願</button>
         </form>
     </div>
 </div>
@@ -582,10 +607,44 @@
     const gasWebUrl = "https://script.google.com/macros/s/AKfycbzbfBxctNIrO_GkZY557I4ZFwPUubjmkQIYpQ2ybOQ7zKINvoI2Anmvts-aiYSYsoVG_g/exec";
     let currentVotesData = {};
 
-    window.addEventListener('DOMContentLoaded', fetchVotes);
+    /* 💡 設定活動截止時間：請輸入目標日期的時間字串 (格式：YYYY-MM-DDTHH:MM:SS) */
+    const deadline = new Date("2026-07-27T23:59:59"); 
+
+    window.addEventListener('DOMContentLoaded', () => {
+        checkDeadlineStatus();
+        fetchVotes();
+    });
+
+    /* 💡 自動檢測是否超過截止時間 */
+    function checkDeadlineStatus() {
+        const now = new Date();
+        if (now >= deadline) {
+            disableVoting();
+        }
+    }
+
+    /* 💡 執行關閉投票機制 */
+    function disableVoting() {
+        // 1. 顯示截止紅色告示
+        const notice = document.getElementById('closedNotice');
+        if (notice) notice.style.display = 'block';
+
+        // 2. 禁用所有輸入框與選票格
+        document.getElementById('nickname').disabled = true;
+        document.getElementById('message').disabled = true;
+        
+        const checkboxes = document.querySelectorAll('input[name="selectedSong"]');
+        checkboxes.forEach(box => box.disabled = true);
+
+        // 3. 修改按鈕狀態
+        const submitBtn = document.getElementById('submitBtn');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerText = "🔒 許願已截止，感謝參與！";
+        }
+    }
 
     function fetchVotes() {
-        // 💡 加上強制重新整理參數，確保每一次開啟都跟 Google 試算表拿最新活數據
         fetch(`${gasWebUrl}?_=${Date.now()}`)
         .then(response => response.json())
         .then(data => {
@@ -641,9 +700,16 @@
     function submitForm(event) {
         event.preventDefault();
 
+        // 二次驗證截止時間
+        if (new Date() >= deadline) {
+            alert("⏰ 許願點歌時間已截止囉！");
+            disableVoting();
+            return;
+        }
+
         const nickname = document.getElementById('nickname').value;
         const message = document.getElementById('message').value;
-        const submitBtn = document.querySelector('.btn-submit');
+        const submitBtn = document.getElementById('submitBtn');
 
         const checkedBoxes = document.querySelectorAll('input[name="selectedSong"]:checked');
         if (checkedBoxes.length === 0) {
@@ -687,8 +753,10 @@
         })
         .catch(error => alert("連線伺服器異常，請重新再試！"))
         .finally(() => {
-            submitBtn.disabled = false;
-            submitBtn.innerText = "送出點歌許願";
+            if (new Date() < deadline) {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "送出點歌許願";
+            }
         });
     }
 </script>
